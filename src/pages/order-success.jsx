@@ -7,6 +7,10 @@ import { formatDateWithMonth } from '@/utils/dateFormatter';
 import { trackPurchase } from '@/utils/analytics';
 import Link from 'next/link';
 
+/**
+ * Order Success Page - Public page that doesn't require authentication
+ * Uses public order tracking API to display order confirmation
+ */
 export default function OrderSuccessPage() {
   const router = useRouter();
   const { id, event_id } = router.query;
@@ -16,17 +20,34 @@ export default function OrderSuccessPage() {
   const [purchaseTracked, setPurchaseTracked] = useState(false);
 
   useEffect(() => {
-    if (!id) return;
+    // Wait for router to be ready before attempting to fetch
+    if (!router.isReady) {
+      return;
+    }
+
+    if (!id) {
+      setLoading(false);
+      setError('Order ID not found. Please check your order confirmation email.');
+      return;
+    }
 
     const fetchOrder = async () => {
       setLoading(true);
       setError('');
 
       try {
-        const response = await ordersAPI.trackOrder(id);
+        const response = await ordersAPI.trackOrder(String(id));
         const data = response.data?.data || response.data;
-        setOrder(data);
+        
+        if (data && data._id) {
+          setOrder(data);
+        } else if (data) {
+          setOrder(data);
+        } else {
+          setError('Order data not found. Please try again later.');
+        }
       } catch (err) {
+        console.error('Order fetch error:', err);
         setError(
           err.response?.data?.message ||
             err.message ||
@@ -38,9 +59,10 @@ export default function OrderSuccessPage() {
     };
 
     fetchOrder();
-  }, [id]);
+  }, [router.isReady, id]);
 
   useEffect(() => {
+    if (!router.isReady) return;
     if (!order || purchaseTracked) return;
     if (!id) return;
 
@@ -62,10 +84,11 @@ export default function OrderSuccessPage() {
     try {
       trackPurchase({ transactionId, value, currency, items, eventId });
       setPurchaseTracked(true);
-    } catch {
+    } catch (err) {
+      console.error('Purchase tracking error:', err);
       // ignore analytics errors
     }
-  }, [order, purchaseTracked, event_id, id]);
+  }, [router.isReady, order, purchaseTracked, event_id, id]);
 
   const renderOrderSummary = () => {
     if (!order) return null;
@@ -208,18 +231,36 @@ export default function OrderSuccessPage() {
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Order Success' }]} />
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          {loading ? (
+          {!router.isReady ? (
+            <div className="rounded-3xl bg-white p-12 text-center shadow-lg">
+              <div className="mx-auto mb-6 h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
+              <p className="text-gray-700">Initializing order confirmation...</p>
+            </div>
+          ) : loading ? (
             <div className="rounded-3xl bg-white p-12 text-center shadow-lg">
               <div className="mx-auto mb-6 h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
               <p className="text-gray-700">Loading order details...</p>
             </div>
           ) : error ? (
             <div className="rounded-3xl bg-white p-10 text-center shadow-lg">
+              <svg className="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               <p className="text-lg font-semibold text-red-600">{error}</p>
-              <p className="mt-4 text-gray-600">Please verify your order ID or try again later.</p>
+              <p className="mt-4 text-gray-600">Please verify your order ID or contact support.</p>
+              <div className="mt-6">
+                <Link href="/orders/track" className="inline-block text-blue-600 hover:text-blue-700 font-semibold">
+                  → Go to Order Tracking
+                </Link>
+              </div>
             </div>
-          ) : (
+          ) : order ? (
             renderOrderSummary()
+          ) : (
+            <div className="rounded-3xl bg-white p-12 text-center shadow-lg">
+              <p className="text-gray-700 font-semibold">No order data available</p>
+              <p className="mt-2 text-gray-600">Please check your order ID and try again.</p>
+            </div>
           )}
         </div>
       </div>
