@@ -4,9 +4,6 @@ import Breadcrumb from '@/components/shop/Breadcrumb';
 import SEO from '@/components/shared/SEO';
 import { ordersAPI } from '@/services/api';
 import { formatDateWithMonth } from '@/utils/dateFormatter';
-import OrderItemsList from '@/components/orders/OrderItemsList';
-import ShippingAddressCard from '@/components/orders/ShippingAddressCard';
-import PaymentInfoCard from '@/components/orders/PaymentInfoCard';
 import { trackPurchase } from '@/utils/analytics';
 import Link from 'next/link';
 

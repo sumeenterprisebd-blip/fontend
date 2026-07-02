@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import ErrorBoundary from "@/components/shared/ErrorBoundary";
-import { SessionProvider } from "next-auth/react";
+import SafeSessionProvider from "@/components/shared/SafeSessionProvider";
 
 const AppClientRuntime = dynamic(() => import("@/components/shared/AppClientRuntime"), {
   ssr: false,
@@ -101,7 +101,7 @@ export default function App({
 
   return (
     <ErrorBoundary>
-      <SessionProvider session={session}>
+      <SafeSessionProvider session={session}>
         <AuthProvider>
           <SettingsProvider>
             <ToastProvider>
@@ -132,7 +132,7 @@ export default function App({
             </ToastProvider>
           </SettingsProvider>
         </AuthProvider>
-      </SessionProvider>
+      </SafeSessionProvider>
     </ErrorBoundary>
   );
 }
