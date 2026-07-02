@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react';
 
 /**
  * SafeSessionProvider wraps NextAuth SessionProvider and:
- * 1. Disables automatic session fetching to prevent 500 errors from /api/auth/session
- * 2. Suppresses NextAuth CLIENT_FETCH_ERROR in console
- * 3. Allows public pages to render without authentication
+ * 1. Completely disables automatic session fetching
+ * 2. Suppresses NextAuth CLIENT_FETCH_ERROR and related console errors
+ * 3. Handles hydration safely
+ * 4. Returns gracefully for public pages that don't need authentication
+ * 
+ * This is used because the app has empty NextAuth providers and relies on custom JWT auth,
+ * so the session endpoint is not needed and would fail with a 500 error.
  */
 export default function SafeSessionProvider({ session, children }) {
   const [mounted, setMounted] = useState(false);
@@ -51,14 +55,18 @@ export default function SafeSessionProvider({ session, children }) {
     };
   }, []);
 
-  if (!mounted) return children;
+  if (!mounted) return <>{children}</>;
 
   return (
     <SessionProvider
       session={session}
+      // Completely disable all automatic session fetching
+      // since we use custom JWT auth and don't have valid providers
       refetchInterval={0}
       refetchOnWindowFocus={false}
       refetchWhenOnline={false}
+      // Skip CSRF check for our custom auth setup
+      skipCSRFCheck={true}
     >
       {children}
     </SessionProvider>

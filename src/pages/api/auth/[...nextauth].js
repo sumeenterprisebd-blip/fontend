@@ -60,5 +60,28 @@ if (process.env.NODE_ENV === "production") {
   }
 }
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+
+// Wrap NextAuth handler to gracefully handle session endpoint errors
+// Since we use empty providers with custom JWT auth, session endpoint may fail
+// This wrapper ensures it returns a valid response instead of 500
+export default async function customHandler(req, res) {
+  // Catch any errors in the session endpoint
+  try {
+    return await handler(req, res);
+  } catch (error) {
+    // If it's a session-related request, return empty session instead of 500
+    if (req.url?.includes('/session')) {
+      console.warn('[NextAuth] Session endpoint error (returning empty session):', error?.message);
+      return res.status(200).json({
+        user: null,
+        expires: null,
+        accessToken: null,
+      });
+    }
+    // For other endpoints, re-throw the error
+    throw error;
+  }
+}
+
 
