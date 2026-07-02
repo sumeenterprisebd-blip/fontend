@@ -1,0 +1,33 @@
+export const defaultCampaignFormData = {
+  title: "",
+  subtitle: "",
+  description: "",
+  discountText: "",
+  bannerImage: "",
+  mobileBannerImage: "",
+  ctaButtonText: "Shop Now",
+  ctaButtonLink: "/shop",
+  startDate: "",
+  endDate: "",
+  isActive: true,
+  backgroundColor: "gradient-to-r from-pink-500 to-red-500",
+  textColor: "text-black",
+  priority: 0,
+};
+
+export const mapCampaignToFormData = (campaign) => ({
+  title: campaign.title,
+  subtitle: campaign.subtitle || "",
+  description: campaign.description || "",
+  discountText: campaign.discountText || "",
+  bannerImage: campaign.bannerImage,
+  mobileBannerImage: campaign.mobileBannerImage || "",
+  ctaButtonText: campaign.ctaButtonText,
+  ctaButtonLink: campaign.ctaButtonLink,
+  startDate: campaign.startDate.split("T")[0],
+  endDate: campaign.endDate.split("T")[0],
+  isActive: campaign.isActive,
+  backgroundColor: campaign.backgroundColor,
+  textColor: campaign.textColor,
+  priority: campaign.priority,
+});

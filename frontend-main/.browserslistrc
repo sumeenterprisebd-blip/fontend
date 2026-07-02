@@ -1,0 +1,4 @@
+# Modern browsers only (ES modules capable)
+supports es6-module
+not dead
+not op_mini all
