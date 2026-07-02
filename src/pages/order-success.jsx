@@ -22,32 +22,83 @@ export default function OrderSuccessPage() {
   useEffect(() => {
     // Wait for router to be ready before attempting to fetch
     if (!router.isReady) {
+      console.log('[ORDER_SUCCESS_ROUTER_NOT_READY]', { timestamp: new Date().toISOString() });
       return;
     }
 
     if (!id) {
+      console.log('[ORDER_SUCCESS_NO_ID]', { 
+        timestamp: new Date().toISOString(),
+        routerQuery: router.query 
+      });
       setLoading(false);
       setError('Order ID not found. Please check your order confirmation email.');
       return;
     }
 
     const fetchOrder = async () => {
+      console.log('[ORDER_SUCCESS_FETCH_START]', {
+        timestamp: new Date().toISOString(),
+        orderId: String(id),
+        eventId: String(event_id || ''),
+      });
+
       setLoading(true);
       setError('');
 
       try {
-        const response = await ordersAPI.trackOrder(String(id));
+        const orderIdStr = String(id);
+        console.log('[ORDER_SUCCESS_CALLING_API]', {
+          timestamp: new Date().toISOString(),
+          orderId: orderIdStr,
+          endpoint: `/orders/track/${orderIdStr}`,
+        });
+
+        const response = await ordersAPI.trackOrder(orderIdStr);
+        
+        console.log('[ORDER_SUCCESS_API_RESPONSE]', {
+          timestamp: new Date().toISOString(),
+          orderId: orderIdStr,
+          hasData: Boolean(response.data),
+          hasDataField: Boolean(response.data?.data),
+          responseStatus: response.status,
+        });
+
         const data = response.data?.data || response.data;
         
         if (data && data._id) {
+          console.log('[ORDER_SUCCESS_ORDER_FOUND]', {
+            timestamp: new Date().toISOString(),
+            orderId: orderIdStr,
+            foundOrderId: data._id,
+            orderNumber: data.orderNumber,
+          });
           setOrder(data);
         } else if (data) {
+          console.log('[ORDER_SUCCESS_ORDER_PARTIAL]', {
+            timestamp: new Date().toISOString(),
+            orderId: orderIdStr,
+            dataKeys: Object.keys(data || {}),
+          });
           setOrder(data);
         } else {
+          console.log('[ORDER_SUCCESS_NO_DATA]', {
+            timestamp: new Date().toISOString(),
+            orderId: orderIdStr,
+            response: response.data,
+          });
           setError('Order data not found. Please try again later.');
         }
       } catch (err) {
-        console.error('Order fetch error:', err);
+        console.error('[ORDER_SUCCESS_FETCH_ERROR]', {
+          timestamp: new Date().toISOString(),
+          orderId: String(id),
+          errorMessage: err?.message,
+          errorStatus: err?.response?.status,
+          errorData: err?.response?.data,
+          stack: err?.stack?.split('\n')[0],
+        });
+        
         setError(
           err.response?.data?.message ||
             err.message ||

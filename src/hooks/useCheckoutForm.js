@@ -327,6 +327,17 @@ export function useCheckoutForm(
         const guest = !isAuthenticated();
         const order = response.data?.order;
         const newOrderId = order?.orderNumber || order?._id || response.data?.orderId || null;
+        
+        console.log('[CHECKOUT_ORDER_RESPONSE]', {
+          timestamp: new Date().toISOString(),
+          hasOrder: Boolean(order),
+          orderNumber: order?.orderNumber,
+          orderId: order?._id,
+          fallbackId: response.data?.orderId,
+          finalOrderId: newOrderId,
+          isGuest: guest,
+        });
+
         setPlacedOrderId(newOrderId);
         setSuccessTitle("Order Confirmed!");
         setSuccessMessage(

@@ -278,13 +278,33 @@ export default function CheckoutPage() {
                 cartItems={cartItems}
                 cartTotals={totals}
                 onOrderSuccess={async ({ orderId, metaEventId }) => {
+                  console.log('[CHECKOUT_ON_SUCCESS]', {
+                    timestamp: new Date().toISOString(),
+                    orderId,
+                    metaEventId,
+                  });
+
                   if (orderId) {
                     const params = new URLSearchParams();
                     params.set('id', String(orderId));
                     if (metaEventId) params.set('event_id', String(metaEventId));
-                    await router.push(`/order-success?${params.toString()}`);
+                    const redirectUrl = `/order-success?${params.toString()}`;
+                    
+                    console.log('[CHECKOUT_REDIRECT]', {
+                      timestamp: new Date().toISOString(),
+                      orderId,
+                      redirectUrl,
+                    });
+
+                    await router.push(redirectUrl);
                     return;
                   }
+                  
+                  console.log('[CHECKOUT_NO_ORDER_ID]', {
+                    timestamp: new Date().toISOString(),
+                    orderId,
+                  });
+
                   setOrderJustPlaced(true);
                 }}
                 onSuccessAlertClose={() => setOrderJustPlaced(false)}
