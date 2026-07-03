@@ -55,22 +55,20 @@ export default function OrderSuccessPage() {
         });
 
         const response = await ordersAPI.trackOrder(orderIdStr);
-        
+
+        const data = response?.data?.data || response?.data || response;
         console.log('[ORDER_SUCCESS_API_RESPONSE]', {
           timestamp: new Date().toISOString(),
           orderId: orderIdStr,
-          hasData: Boolean(response.data),
-          hasDataField: Boolean(response.data?.data),
-          responseStatus: response.status,
+          rawResponse: response,
+          dataKeys: data ? Object.keys(data) : [],
         });
 
-        const data = response.data?.data || response.data;
-        
-        if (data && data._id) {
+        if (data && (data._id || data.orderId || data.orderNumber)) {
           console.log('[ORDER_SUCCESS_ORDER_FOUND]', {
             timestamp: new Date().toISOString(),
             orderId: orderIdStr,
-            foundOrderId: data._id,
+            foundOrderId: data._id || data.orderId || data.orderNumber,
             orderNumber: data.orderNumber,
           });
           setOrder(data);
@@ -85,7 +83,7 @@ export default function OrderSuccessPage() {
           console.log('[ORDER_SUCCESS_NO_DATA]', {
             timestamp: new Date().toISOString(),
             orderId: orderIdStr,
-            response: response.data,
+            response,
           });
           setError('Order data not found. Please try again later.');
         }
