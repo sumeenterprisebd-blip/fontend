@@ -15,6 +15,7 @@ export default function TopCategorySectionView({ categories = [], loading = fals
         return (Array.isArray(categories) ? categories : [])
             .slice()
             .sort((a, b) => (b.count || 0) - (a.count || 0))
+            .filter((c) => (c.count || 0) > 0)
             .map((cat) => ({
                 id: cat.id || cat._id || cat.name,
                 name: cat.name,
@@ -180,18 +181,14 @@ export default function TopCategorySectionView({ categories = [], loading = fals
                                                 fetchPriority="auto"
                                             />
 
-                                            <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-full border border-gray-100 bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#0a1a44] shadow-sm backdrop-blur">
-                                                {category.itemCount} {category.itemCount === 1 ? "Product" : "Products"}
-                                            </div>
+                                            {/* product count badge removed per requirement */}
                                         </div>
 
                                         <div className="relative flex flex-col gap-2 p-4 sm:p-5">
                                             <h3 className="text-base font-semibold text-[#0a1a44] transition-colors group-hover:text-[#0c245a] sm:text-lg">
                                                 {category.name}
                                             </h3>
-                                            <p className="text-sm text-gray-600">
-                                                {category.itemCount} {category.itemCount === 1 ? "Product" : "Products"}
-                                            </p>
+                                            {/* product count removed */}
                                             <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#0a1a44]/10 px-3 py-1.5 text-xs font-semibold text-[#0a1a44]">
                                                 Shop Now
                                                 <FiArrowRight className="h-4 w-4" />
