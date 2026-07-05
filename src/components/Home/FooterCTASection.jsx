@@ -11,7 +11,7 @@ export default function FooterCTASection() {
                             Ready to refresh your wardrobe?
                         </h2>
                         <p className="text-sm sm:text-base text-white/80 mb-6 max-w-xl">
-                            Shop the latest drops or reach out for styling help—DeshWear is here for you.
+                            Shop the latest drops or reach out for styling help—Sume Traders is here for you.
                         </p>
                         <div className="flex flex-wrap gap-3">
                             <Link

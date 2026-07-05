@@ -128,7 +128,7 @@ export default function AdminSidebar({ open, onClose, user, unreadCount, notific
                 <div className="flex items-center justify-between gap-2 border-b border-slate-100 bg-gradient-to-r from-sky-600 to-blue-700 px-3 lg:px-4 py-4">
                     {!isCollapsed && (
                         <div className="min-w-0">
-                            <p className="text-lg font-semibold text-white truncate">DeshWear Admin</p>
+                            <p className="text-lg font-semibold text-white truncate">Sume Traders Admin</p>
                             <p className="text-xs text-sky-100/90">Manage operations</p>
                         </div>
                     )}

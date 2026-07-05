@@ -323,7 +323,7 @@ export default function OrderDetailsModal({
     };
 
     const buildWhatsAppOrderMessage = () => {
-        const brandName = process.env.NEXT_PUBLIC_BRAND_NAME || 'DeshWear';
+        const brandName = process.env.NEXT_PUBLIC_BRAND_NAME || 'Sume Traders';
         const orderLabel = order?.orderNumber
             ? `#${order.orderNumber}`
             : (order?._id ? `#${String(order._id).slice(-8).toUpperCase()}` : '');
@@ -966,7 +966,7 @@ export default function OrderDetailsModal({
                                     <div className="flex items-start gap-4">
                                         <img
                                             src="https://res.cloudinary.com/dczloset7/image/upload/v1768565420/drip_drop/popups/oujst5pamuym9whato3l.jpg"
-                                            alt="DeshWear"
+                                            alt="Sume Traders"
                                             className="h-12 w-12 rounded-xl border border-slate-200 object-cover"
                                         />
                                         <div>
