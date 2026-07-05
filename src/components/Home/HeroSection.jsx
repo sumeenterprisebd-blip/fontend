@@ -51,19 +51,6 @@ export default function HeroSection({ initialData = [] }) {
                         </div>
                     ))}
                 </HeroCarousel>
-
-                <div className="pointer-events-none absolute inset-0 flex items-end">
-                    <div className="w-full bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-                        <div className={`${NAV_WIDTH_CLASSES} pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-16 lg:pt-32`}>
-                            <Link
-                                href="/shop"
-                                className="pointer-events-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg transition-colors hover:bg-gray-100 sm:px-8 sm:text-base"
-                            >
-                                Shop Now
-                            </Link>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     );

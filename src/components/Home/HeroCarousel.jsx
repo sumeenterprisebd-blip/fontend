@@ -6,7 +6,6 @@ export default function HeroCarousel({ children }) {
     const totalSlides = slides.length;
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Keep the index in range when the slide count changes
     useEffect(() => {
         if (totalSlides === 0) {
             setCurrentIndex(0);
@@ -15,7 +14,6 @@ export default function HeroCarousel({ children }) {
         setCurrentIndex((prev) => prev % totalSlides);
     }, [totalSlides]);
 
-    // Auto-play functionality
     useEffect(() => {
         if (totalSlides <= 1) return undefined;
 
@@ -33,12 +31,15 @@ export default function HeroCarousel({ children }) {
 
     return (
         <div className="relative w-full overflow-hidden bg-white">
-            <div className="w-full">
+            <div className="relative w-full">
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={`w-full transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block opacity-100' : 'hidden opacity-0'
+                        className={`w-full transition-all duration-700 ease-out ${index === currentIndex
+                            ? 'relative opacity-100'
+                            : 'pointer-events-none absolute inset-0 opacity-0'
                             }`}
+                        aria-hidden={index !== currentIndex}
                     >
                         {slide}
                     </div>
@@ -46,14 +47,14 @@ export default function HeroCarousel({ children }) {
             </div>
 
             {totalSlides > 1 && (
-                <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2">
+                <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-1.5 sm:bottom-6 sm:gap-2 md:bottom-8">
                     {slides.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => goToSlide(index)}
-                            className={`h-2 sm:h-3 rounded-full transition-all duration-300 touch-manipulation ${index === currentIndex
-                                ? 'bg-black w-6 sm:w-8'
-                                : 'bg-gray-400 hover:bg-gray-600 w-2 sm:w-3'
+                            className={`h-2 rounded-full transition-all duration-300 touch-manipulation sm:h-3 ${index === currentIndex
+                                ? 'w-6 bg-black sm:w-8'
+                                : 'w-2 bg-gray-400 hover:bg-gray-600 sm:w-3'
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />

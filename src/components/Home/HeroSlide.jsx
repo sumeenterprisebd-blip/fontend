@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 const isCloudinaryUrl = (url) => typeof url === 'string' && url.includes('cloudinary.com') && url.includes('/upload/');
 
-const HERO_SIZES = '(max-width: 1280px) 100vw, 1280px';
+const HERO_SIZES = '100vw';
 const HERO_SRCSET_WIDTHS = [640, 750, 828, 1080, 1200, 1280];
 
 const HeroSlide = ({ image, fallbackImage = null, isFirst = false }) => {
@@ -58,10 +58,8 @@ const HeroSlide = ({ image, fallbackImage = null, isFirst = false }) => {
     }, [optimizedSrc]);
 
     return (
-        <section
-            className={`relative w-full overflow-hidden bg-[#f3f3f3] ${HERO_HEIGHT_CLASSES}`}
-        >
-            <div className="absolute inset-0 h-full w-full">
+        <section className={`relative w-full overflow-hidden bg-[#f3f3f3] ${HERO_HEIGHT_CLASSES}`}>
+            <div className="relative h-full w-full">
                 {isCloudinaryUrl(currentSrc) && cloudinaryBaseForSrcSet ? (
                     <img
                         src={currentSrc}
