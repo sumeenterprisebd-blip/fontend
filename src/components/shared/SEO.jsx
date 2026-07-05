@@ -13,8 +13,8 @@ import { useRouter } from 'next/router';
  * @param {string} canonical - Canonical URL
  */
 export default function SEO({
-    title = 'DeshWear - Quality Fashion Online',
-    description = 'Shop quality clothing at DeshWear. Find outfits for every occasion with free shipping on orders over ৳500.',
+    title = 'Sume Traders - Quality Fashion Online',
+    description = 'Shop quality clothing at Sume Traders. Find outfits for every occasion with free shipping on orders over ৳500.',
     keywords = 'online shopping, fashion, clothing, Bangladesh',
     image = '/logo.jpeg',
     type = 'website',
@@ -23,7 +23,7 @@ export default function SEO({
     canonical
 }) {
     const router = useRouter();
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://deshwear.com';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sumetraders.com';
     const currentUrl = `${siteUrl}${router.asPath}`;
     const canonicalUrl = canonical || currentUrl;
 

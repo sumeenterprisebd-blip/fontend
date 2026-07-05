@@ -27,7 +27,7 @@ export default function ProductFormColors({ formData, onToggleColor, onAddCustom
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
-        Colors <span className="text-red-500">*</span>
+        Colors
       </h3>
 
       <SelectedColorsList
@@ -56,9 +56,7 @@ export default function ProductFormColors({ formData, onToggleColor, onAddCustom
 
       <CustomColorForm onAddCustomColor={handleAddCustomColor} />
 
-      {formData.colors.length === 0 && (
-        <p className="text-sm text-red-500">Please select at least one color</p>
-      )}
+      {/* Color selection is optional; no inline required message */}
     </div>
   );
 }

@@ -4,7 +4,7 @@ export default function ProductFormSizes({ formData, onToggleSize }) {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
-        Sizes <span className="text-red-500">*</span>
+        Sizes
       </h3>
       <div className="flex flex-wrap gap-2">
         {AVAILABLE_SIZES.map(size => (
@@ -22,9 +22,7 @@ export default function ProductFormSizes({ formData, onToggleSize }) {
           </button>
         ))}
       </div>
-      {formData.sizes.length === 0 && (
-        <p className="text-sm text-red-500">Please select at least one size</p>
-      )}
+      {/* sizes are optional now */}
     </div>
   );
 }

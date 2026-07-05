@@ -32,13 +32,13 @@ export default function WhyDeshWearSection() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10 lg:mb-12 space-y-3">
                     <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide bg-[#0a1a44]/10 text-[#0a1a44]">
-                        Why DeshWear
+                        Why Sume Traders
                     </span>
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0a1a44]">
                         A local brand made for your everyday life
                     </h2>
                     <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
-                        DeshWear started with a simple promise: make stylish, dependable fashion that feels right for Bangladesh.
+                        Sume Traders started with a simple promise: make stylish, dependable fashion that feels right for Bangladesh.
                         We focus on quality materials, thoughtful designs, and service that treats you like family.
                     </p>
                 </div>
