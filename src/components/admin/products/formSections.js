@@ -2,8 +2,6 @@ import ProductFormBasicInfo from "./ProductFormBasicInfo";
 import ProductFormPricing from "./ProductFormPricing";
 import ProductFormComboOffer from "./ProductFormComboOffer";
 import ProductFormInventory from "./ProductFormInventory";
-import ProductFormColors from "./ProductFormColors";
-import ProductFormSizes from "./ProductFormSizes";
 import ProductFormMeasurements from "./ProductFormMeasurements";
 import ProductFormImages from "./ProductFormImages";
 import ProductFormTags from "./ProductFormTags";
@@ -45,19 +43,6 @@ export function getFormSections(
     {
       Component: ProductFormInventory,
       props: { formData, onChange: formActions.updateField },
-    },
-    {
-      Component: ProductFormColors,
-      props: {
-        formData,
-        onToggleColor: formActions.toggleColor,
-        onAddCustomColor: formActions.addCustomColor,
-        onRemoveColor: formActions.removeColor,
-      },
-    },
-    {
-      Component: ProductFormSizes,
-      props: { formData, onToggleSize: formActions.toggleSize },
     },
     {
       Component: ProductFormMeasurements,

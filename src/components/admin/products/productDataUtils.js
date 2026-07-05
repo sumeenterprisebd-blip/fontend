@@ -10,8 +10,6 @@ export const buildProductData = (formData) => {
     stock: parseInt(formData.stock),
     category: formData.category,
     dressStyle: formData.dressStyle,
-    colors: formData.colors,
-    sizes: formData.sizes,
     description: formData.description ? formData.description.trim() : "",
     images: validImages,
     isFeatured: formData.isFeatured || false,
@@ -135,8 +133,6 @@ export const productToFormData = (product) => ({
       : "2",
   category: product.category || "",
   dressStyle: product.dressStyle || "Casual",
-  colors: Array.isArray(product.colors) ? product.colors : [],
-  sizes: Array.isArray(product.sizes) ? product.sizes : [],
   measurements: Array.isArray(product.measurements)
     ? product.measurements.map((group) => ({
       category:

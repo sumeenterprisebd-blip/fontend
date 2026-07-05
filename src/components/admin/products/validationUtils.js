@@ -29,14 +29,6 @@ export const validateProductForm = (formData) => {
     errors.push("Please add at least one image URL");
   }
 
-  if (!formData.colors || formData.colors.length === 0) {
-    errors.push("Please select at least one color");
-  }
-
-  if (!formData.sizes || formData.sizes.length === 0) {
-    errors.push("Please select at least one size");
-  }
-
   if (Array.isArray(formData.measurements)) {
     formData.measurements.forEach((group, groupIndex) => {
       const category = group?.category;

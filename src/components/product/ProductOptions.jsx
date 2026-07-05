@@ -1,18 +1,10 @@
 import { useState, useEffect } from 'react';
 import ComboOfferDisplay from './ComboOfferDisplay';
-import ColorSelector from './ColorSelector';
-import SizeSelector from './SizeSelector';
 import QuantitySelector from './QuantitySelector';
-import { useProductOptions } from './useProductOptions';
 import { trackEvent } from '@/utils/analytics';
 
 export default function ProductOptions({ product, onAddToCart }) {
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [sizeError, setSizeError] = useState('');
-
-  const { availableColors, availableSizes } = useProductOptions(product);
   const maxQuantity = product?.stock || 999;
   const basePrice = Number(product?.price || 0);
   const hasOriginalDiscount = product?.originalPrice && product.originalPrice > basePrice;
@@ -24,17 +16,6 @@ export default function ProductOptions({ product, onAddToCart }) {
   // Initialize state when product loads
   useEffect(() => {
     if (!product) return;
-
-    if (product.colors && product.colors.length > 0) {
-      const firstColor = product.colors[0];
-      const colorName = typeof firstColor === 'string' ? firstColor : firstColor.name;
-      setSelectedColor(colorName);
-    }
-
-    // No size should be selected by default.
-    setSelectedSize('');
-    setSizeError('');
-
     setQuantity(1);
   }, [product]);
 
@@ -51,48 +32,11 @@ export default function ProductOptions({ product, onAddToCart }) {
   };
 
   const handleAddToCart = () => {
-    const requiresColor = Array.isArray(availableColors) && availableColors.length > 0;
-    const requiresSize = Array.isArray(availableSizes) && availableSizes.length > 0;
-
-    const colorSelected = !requiresColor
-      ? true
-      : (!!selectedColor &&
-        selectedColor !== '' &&
-        selectedColor !== 'undefined' &&
-        !(String(selectedColor).toLowerCase() === 'default'));
-
-    const sizeSelected = !requiresSize
-      ? true
-      : (!!selectedSize && selectedSize !== '' && selectedSize !== 'undefined');
-
-    if (requiresSize && !sizeSelected) {
-      setSizeError('Please select a size.');
-      return;
-    }
-
-    // Validate remaining required selections
-    if (!colorSelected || !sizeSelected) {
-      alert('Please select both color and size before adding to cart');
-      return;
-    }
-
     if (product.stock === 0) {
       alert('This product is out of stock');
       return;
     }
 
-    // Always send a valid size and color from product options
-    const validSize = product.sizes?.includes(selectedSize) ? selectedSize : product.sizes?.[0];
-    let validColor = selectedColor;
-    if (Array.isArray(product.colors)) {
-      if (typeof product.colors[0] === 'object') {
-        // Find the color object by name, send the name
-        const found = product.colors.find(c => c.name === selectedColor);
-        validColor = found ? found.name : product.colors[0].name;
-      } else {
-        validColor = product.colors.includes(selectedColor) ? selectedColor : product.colors[0];
-      }
-    }
     // Use server-provided price as source of truth; derive discount for display only
     const basePrice = Number(product.price || 0);
     const hasOriginalDiscount = product.originalPrice && product.originalPrice > basePrice;
@@ -109,8 +53,6 @@ export default function ProductOptions({ product, onAddToCart }) {
       originalPrice: product.originalPrice || null,
       discountPercent,
       image: product.images?.[0] || product.image,
-      size: validSize,
-      color: validColor,
       quantity,
       slug: product.slug,
     };
@@ -138,22 +80,7 @@ export default function ProductOptions({ product, onAddToCart }) {
   if (!product) return null;
 
   const isOutOfStock = product.stock === 0;
-  const requiresColor = Array.isArray(availableColors) && availableColors.length > 0;
-  const requiresSize = Array.isArray(availableSizes) && availableSizes.length > 0;
-
-  const hasValidColor = !requiresColor
-    ? true
-    : (selectedColor &&
-      selectedColor !== '' &&
-      selectedColor !== 'undefined' &&
-      !(String(selectedColor).toLowerCase() === 'default'));
-
-  const hasValidSize = !requiresSize
-    ? true
-    : (selectedSize && selectedSize !== '' && selectedSize !== 'undefined');
-
-  const canProceed = hasValidColor && hasValidSize;
-  const isActionDisabled = isOutOfStock || !canProceed;
+  const isActionDisabled = isOutOfStock;
 
   return (
     <div className="space-y-4 sm:space-y-5 lg:space-y-6">
@@ -162,29 +89,6 @@ export default function ProductOptions({ product, onAddToCart }) {
 
       {/* Product Options Card */}
       <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 lg:p-8 border border-gray-100">
-        {availableColors.length > 0 && (
-          <ColorSelector
-            availableColors={availableColors}
-          />
-        )}
-
-        {availableSizes.length > 0 && (
-          <SizeSelector
-            availableSizes={availableSizes}
-            selectedSize={selectedSize}
-            onSizeSelect={(size) => {
-              setSelectedSize(size);
-              if (sizeError) setSizeError('');
-            }}
-          />
-        )}
-
-        {sizeError && (
-          <div className="-mt-3 mb-4 text-sm font-semibold text-red-600">
-            ⚠️ {sizeError}
-          </div>
-        )}
-
         <QuantitySelector
           quantity={quantity}
           maxQuantity={maxQuantity}
@@ -212,13 +116,6 @@ export default function ProductOptions({ product, onAddToCart }) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 Out of Stock
-              </>
-            ) : !canProceed ? (
-              <>
-                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                {hasValidSize ? 'Select Options First' : 'Select Size First'}
               </>
             ) : (
               <>

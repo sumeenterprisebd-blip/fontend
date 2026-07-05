@@ -113,8 +113,6 @@ export default function ProductDetailPage({ initialProduct = null, initialReview
     const result = await addToCart({
       productId: cartData.productId,
       quantity: cartData.quantity,
-      size: cartData.size,
-      color: cartData.color,
     });
 
     if (result.success) {
@@ -490,8 +488,6 @@ export async function getServerSideProps({ params }) {
       originalPrice: fetchedProduct.originalPrice || null,
       discount: fetchedProduct.discount || null,
       category: fetchedProduct.category,
-      colors: fetchedProduct.colors || [],
-      sizes: fetchedProduct.sizes || [],
       sizeGuideColumns: fetchedProduct.sizeGuideColumns || [],
       sizeGuide: fetchedProduct.sizeGuide || [],
       dressStyle: fetchedProduct.dressStyle || 'Casual',
