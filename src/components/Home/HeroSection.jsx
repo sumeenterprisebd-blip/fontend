@@ -1,9 +1,8 @@
 
 import { useMemo } from 'react';
-import Link from 'next/link';
 import HeroCarousel from './HeroCarousel';
 import HeroSlide from './HeroSlide';
-import { HERO_HEIGHT_CLASSES, NAV_WIDTH_CLASSES } from './heroLayoutConfig';
+import { HERO_HEIGHT_CLASSES } from './heroLayoutConfig';
 
 /**
  * HeroSection (SSR/SSG only):
@@ -31,18 +30,16 @@ export default function HeroSection({ initialData = [] }) {
     // Return fallback placeholder if no images available
     if (!primary) {
         return (
-            <section className="w-full bg-gray-100">
-                <div className={`relative flex w-full items-center justify-center ${HERO_HEIGHT_CLASSES}`}>
-                    <div className={`${NAV_WIDTH_CLASSES} h-full w-full`}>
-                        <div className="h-full w-full animate-pulse rounded-none bg-gray-200" />
-                    </div>
+            <section className="relative left-1/2 w-screen -ml-[50vw] overflow-hidden bg-gray-100">
+                <div className={`relative w-full ${HERO_HEIGHT_CLASSES}`}>
+                    <div className="h-full w-full animate-pulse rounded-none bg-gray-200" />
                 </div>
             </section>
         );
     }
 
     return (
-        <section className="w-full bg-white">
+        <section className="relative left-1/2 w-screen -ml-[50vw] overflow-hidden bg-white">
             <div className="relative w-full">
                 <HeroCarousel>
                     {slides.map((slide, index) => (
