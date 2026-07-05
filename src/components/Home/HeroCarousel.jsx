@@ -37,7 +37,7 @@ export default function HeroCarousel({ children }) {
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={`w-full transition-opacity duration-500 ease-in-out ${index === currentIndex ? 'opacity-100' : 'hidden opacity-0'
+                        className={`w-full transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'block opacity-100' : 'hidden opacity-0'
                             }`}
                     >
                         {slide}

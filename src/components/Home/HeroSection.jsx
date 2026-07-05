@@ -1,6 +1,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import HeroCarousel from './HeroCarousel';
 import HeroSlide from './HeroSlide';
 import { HERO_HEIGHT_CLASSES, NAV_WIDTH_CLASSES } from './heroLayoutConfig';
 
@@ -10,7 +11,7 @@ import { HERO_HEIGHT_CLASSES, NAV_WIDTH_CLASSES } from './heroLayoutConfig';
  * No client-side fetching or hydration delays.
  */
 export default function HeroSection({ initialData = [] }) {
-    const { primary, fallback } = useMemo(() => {
+    const slides = useMemo(() => {
         const images = (Array.isArray(initialData) ? initialData : [])
             .reduce((acc, hero) => {
                 const heroImages = Array.isArray(hero?.images) ? hero.images : [];
@@ -19,11 +20,13 @@ export default function HeroSection({ initialData = [] }) {
             }, [])
             .filter((src) => typeof src === 'string' && src.trim().length > 0);
 
-        return {
-            primary: images[0] || null,
-            fallback: images[1] || null,
-        };
+        return images.map((image, index) => ({
+            image,
+            fallbackImage: images[index + 1] || null,
+        }));
     }, [initialData]);
+
+    const primary = slides[0]?.image || null;
 
     // Return fallback placeholder if no images available
     if (!primary) {
@@ -41,7 +44,13 @@ export default function HeroSection({ initialData = [] }) {
     return (
         <section className="w-full bg-white">
             <div className="relative w-full">
-                <HeroSlide image={primary} fallbackImage={fallback} isFirst={true} />
+                <HeroCarousel>
+                    {slides.map((slide, index) => (
+                        <div key={`${slide.image}-${index}`} className="w-full">
+                            <HeroSlide image={slide.image} fallbackImage={slide.fallbackImage} isFirst={index === 0} />
+                        </div>
+                    ))}
+                </HeroCarousel>
 
                 <div className="pointer-events-none absolute inset-0 flex items-end">
                     <div className="w-full bg-gradient-to-t from-black/65 via-black/25 to-transparent">
