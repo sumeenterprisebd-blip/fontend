@@ -59,17 +59,16 @@ const HeroSlide = ({ image, fallbackImage = null, isFirst = false }) => {
 
     return (
         <section
-            className={`relative w-full overflow-hidden bg-white ${HERO_HEIGHT_CLASSES}`}
+            className={`relative w-full overflow-hidden bg-[#f3f3f3] ${HERO_HEIGHT_CLASSES}`}
         >
-            {/* Optimized LCP Image */}
-            <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 h-full w-full">
                 {isCloudinaryUrl(currentSrc) && cloudinaryBaseForSrcSet ? (
                     <img
                         src={currentSrc}
                         srcSet={heroSrcSet || undefined}
                         sizes={HERO_SIZES}
                         alt="Hero"
-                        className="w-full h-full object-contain object-center"
+                        className="h-full w-full object-contain object-center"
                         loading={isFirst ? 'eager' : 'lazy'}
                         fetchPriority={isFirst ? 'high' : undefined}
                         decoding="async"
@@ -93,7 +92,7 @@ const HeroSlide = ({ image, fallbackImage = null, isFirst = false }) => {
                         src={currentSrc}
                         alt="Hero"
                         fill
-                        className="object-contain object-center"
+                        className="h-full w-full object-contain object-center"
                         priority={isFirst}
                         fetchPriority={isFirst ? 'high' : undefined}
                         loading={isFirst ? 'eager' : 'lazy'}

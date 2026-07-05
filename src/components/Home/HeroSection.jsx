@@ -28,37 +28,34 @@ export default function HeroSection({ initialData = [] }) {
     // Return fallback placeholder if no images available
     if (!primary) {
         return (
-            <div className="mx-auto w-full max-w-[1280px]">
-                <div className={`relative w-full flex items-center justify-center ${HERO_HEIGHT_CLASSES}`}>
-                    <div className={`${NAV_WIDTH_CLASSES} w-full`}>
-                        <div className="w-full h-full bg-gray-100 rounded-3xl animate-pulse" />
+            <section className="w-full bg-gray-100">
+                <div className={`relative flex w-full items-center justify-center ${HERO_HEIGHT_CLASSES}`}>
+                    <div className={`${NAV_WIDTH_CLASSES} h-full w-full`}>
+                        <div className="h-full w-full animate-pulse rounded-none bg-gray-200" />
                     </div>
                 </div>
-            </div>
+            </section>
         );
     }
 
     return (
-        <div className="w-full bg-white">
-            <div className="mx-auto w-full max-w-[1280px]">
-                <div className="relative">
-                    <HeroSlide image={primary} fallbackImage={fallback} isFirst={true} />
+        <section className="w-full bg-white">
+            <div className="relative w-full">
+                <HeroSlide image={primary} fallbackImage={fallback} isFirst={true} />
 
-                    <div className="absolute inset-0 flex items-end">
-                        <div className="w-full bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                            <div className={`${NAV_WIDTH_CLASSES} pb-10 sm:pb-12 sm:hidden`}
+                <div className="pointer-events-none absolute inset-0 flex items-end">
+                    <div className="w-full bg-gradient-to-t from-black/65 via-black/25 to-transparent">
+                        <div className={`${NAV_WIDTH_CLASSES} pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-16 lg:pt-32`}>
+                            <Link
+                                href="/shop"
+                                className="pointer-events-auto inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black shadow-lg transition-colors hover:bg-gray-100 sm:px-8 sm:text-base"
                             >
-                                <Link
-                                    href="/shop"
-                                    className="inline-flex items-center justify-center bg-white text-black px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base shadow-lg hover:bg-gray-100 transition-colors"
-                                >
-                                    Shop Now
-                                </Link>
-                            </div>
+                                Shop Now
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
