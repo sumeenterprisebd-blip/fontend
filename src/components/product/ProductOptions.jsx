@@ -97,9 +97,13 @@ export default function ProductOptions({ product, onAddToCart }) {
 
       {/* Product Options Card */}
       <div className="bg-white rounded-[32px] shadow-sm p-5 sm:p-6 lg:p-8 border border-slate-200">
-        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-4 sm:p-5">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">
+        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-5 shadow-sm">
+          <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Choose the best price tier</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Adjust quantity and tap a tier to see the updated price instantly. The selected tier will remain highlighted.</p>
+            </div>
+            <div className="flex items-center justify-start gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm sm:justify-end">
               <label htmlFor="product-quantity" className="text-sm font-medium text-slate-600">Qty</label>
               <input
                 id="product-quantity"
@@ -108,14 +112,14 @@ export default function ProductOptions({ product, onAddToCart }) {
                 min={1}
                 max={maxQuantity}
                 onChange={(event) => handleQuantityInput(event.target.value)}
-                className="w-20 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                className="w-20 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
               />
             </div>
           </div>
         </div>
 
         <div className="pb-2">
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
             {tierList.length > 0 ? (
               tierList.map((tier, index) => {
                 const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
@@ -133,7 +137,7 @@ export default function ProductOptions({ product, onAddToCart }) {
                     key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
                     onClick={() => handleTierSelect(tier)}
                     aria-pressed={isActive}
-                    className={`flex h-full flex-col justify-between rounded-[28px] border p-5 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
+                    className={`flex h-full min-h-[240px] flex-col justify-between rounded-[28px] border p-5 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
                   >
                     <div className="space-y-4">
                       <div className="flex items-start justify-between gap-4">
