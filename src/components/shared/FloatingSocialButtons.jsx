@@ -2,7 +2,6 @@
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp';
-import { FaFacebookMessenger } from '@react-icons/all-files/fa/FaFacebookMessenger';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function FloatingSocialButtons() {
@@ -11,8 +10,6 @@ export default function FloatingSocialButtons() {
 
     const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+8801835847678';
     const whatsappDigits = String(rawNumber || '').replace(/[^\d]/g, '');
-
-    const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER_URL || 'https://m.me/sumetraders';
 
     const context = useMemo(() => {
         if (typeof window === 'undefined') {
@@ -84,24 +81,8 @@ export default function FloatingSocialButtons() {
         window.open(url, '_blank', 'noopener,noreferrer');
     };
 
-    const handleMessengerClick = () => {
-        const ref = encodeURIComponent(buildSupportMessage());
-        const base = String(messengerUrl || '').trim();
-        const url = base.includes('?') ? `${base}&ref=${ref}` : `${base}?ref=${ref}`;
-        window.open(url, '_blank', 'noopener,noreferrer');
-    };
-
     return (
         <div className="fixed bottom-24 right-6 z-50 flex flex-col gap-3">
-            <button
-                onClick={handleMessengerClick}
-                className="relative flex items-center justify-center w-16 h-16 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 bg-blue-600 hover:bg-blue-700"
-                aria-label="Chat on Messenger"
-                type="button"
-            >
-                <FaFacebookMessenger className="w-7 h-7 text-white" />
-            </button>
-
             <button
                 onClick={handleWhatsAppClick}
                 className="relative flex items-center justify-center w-16 h-16 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 bg-green-600 hover:bg-green-700"

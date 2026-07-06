@@ -99,10 +99,10 @@ export default function SEO({
             <meta name="apple-mobile-web-app-title" content="Sume Traders" />
 
             {/* Favicon */}
-            <link rel="icon" href="/favicon.ico" sizes="any" />
+            <link rel="icon" href="/logo.jpeg" type="image/jpeg" sizes="any" />
             <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
             <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+            <link rel="apple-touch-icon" href="/logo.jpeg" sizes="180x180" />
 
             {/* Language */}
             <meta httpEquiv="content-language" content="en" />

@@ -6,7 +6,7 @@ const CACHE_NAME = `drip-drop-${CACHE_VERSION}`;
 const PRECACHE_ASSETS = [
   '/',
   '/shop',
-  '/favicon.ico',
+  '/logo.jpeg',
 ];
 
 // Cache durations (in milliseconds)
@@ -222,8 +222,8 @@ self.addEventListener('push', (event) => {
   const title = payload.title || 'Notification';
   const options = {
     body: payload.body || '',
-    icon: payload.icon || '/favicon.ico',
-    badge: payload.badge || '/favicon.ico',
+    icon: payload.icon || '/logo.jpeg',
+    badge: payload.badge || '/logo.jpeg',
     tag: payload.tag,
     renotify: true,
     data: payload.data || { url: payload.url || '/' },

@@ -8,7 +8,7 @@ const SettingsContext = createContext();
 const DEFAULT_SETTINGS = {
   siteName: "Sume Traders",
   logo: "/logo.jpeg",
-  favicon: "/favicon.ico",
+  favicon: "/logo.jpeg",
   tagline: "Your Premium Fashion Destination",
   email: "support@sumetraders.com",
   phone: "+01835847678",

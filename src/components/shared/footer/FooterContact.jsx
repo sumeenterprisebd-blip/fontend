@@ -4,7 +4,7 @@ import { FiMapPin } from '@react-icons/all-files/fi/FiMapPin';
 import { FiPhone } from '@react-icons/all-files/fi/FiPhone';
 
 const contactInfo = {
-  address: 'Section-11,block-b,lane-1,house-55, Pallabi Mirpur Dhaka-1216',
+  address: 'Section-12 Block-D, Lane-6 Plot-I/15, Pallabi Mirpur Dhaka-1216',
   phones: ['+8801835847678'],
   emails: ['support@sumetraders.com'],
 };

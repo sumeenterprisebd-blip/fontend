@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { scheduleWork } from "@/utils/scheduleWork";
 
@@ -9,11 +9,6 @@ const VercelAnalytics = dynamic(
 
 const MobileBottomNav = dynamic(
     () => import("@/components/shared/MobileBottomNav"),
-    { ssr: false }
-);
-
-const FloatingSocialButtons = dynamic(
-    () => import("@/components/shared/FloatingSocialButtons"),
     { ssr: false }
 );
 
@@ -151,7 +146,6 @@ export default function AppClientRuntime({ isAdminPage }) {
 
     return (
         <>
-            {!isAdminPage && <FloatingSocialButtons />}
             {!isAdminPage && <MobileBottomNav />}
             {!isAdminPage && <VercelAnalytics />}
         </>

@@ -13,10 +13,10 @@ export default class MyDocument extends Document {
       <Html lang="en" suppressHydrationWarning>
         <Head>
           {/* Favicon and App Icons - Essential for branding and browser tab display */}
-          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link rel="icon" href="/logo.jpeg" type="image/jpeg" sizes="any" />
           <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
           <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
-          <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+          <link rel="apple-touch-icon" href="/logo.jpeg" sizes="180x180" />
 
           {/* Preconnect to critical origins for faster resource loading */}
           <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
