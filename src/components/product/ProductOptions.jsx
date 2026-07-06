@@ -90,8 +90,7 @@ export default function ProductOptions({ product, onAddToCart }) {
         <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-5 shadow-sm">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-500">Buy by quantity</p>
-              <h2 className="mt-2 text-2xl font-bold leading-tight text-slate-900">Choose the best price tier</h2>
+              <h2 className="text-2xl font-bold leading-tight text-slate-900">Choose the best price tier</h2>
             </div>
             <div className="flex flex-col gap-2 rounded-[28px] border border-slate-200 bg-white px-4 py-3 shadow-sm sm:flex-row sm:items-center">
               <label htmlFor="product-quantity" className="text-sm font-medium text-slate-700">Quantity</label>
@@ -106,9 +105,6 @@ export default function ProductOptions({ product, onAddToCart }) {
               />
             </div>
           </div>
-          <p className="mt-4 text-sm leading-6 text-slate-600 sm:max-w-2xl">
-            Pick a quantity or tap a tier to auto-select it. Your unit price and total update instantly for a smooth ordering experience.
-          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -160,7 +156,7 @@ export default function ProductOptions({ product, onAddToCart }) {
             })
           ) : (
             <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
-              This product has no quantity-based pricing. The regular price applies for every quantity.
+              This product has no tiered pricing. The regular price applies for every quantity.
             </div>
           )}
         </div>
