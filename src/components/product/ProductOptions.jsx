@@ -116,28 +116,6 @@ export default function ProductOptions({ product, onAddToCart }) {
               />
             </div>
           </div>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs uppercase tracking-[0.32em] text-slate-500">Selected tier</p>
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                <p className="text-base font-semibold text-slate-900">{selectedTierLabel}</p>
-                {selectedTierBadge && (
-                  <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
-                    {selectedTierBadge}
-                  </span>
-                )}
-              </div>
-            </div>
-            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs uppercase tracking-[0.32em] text-slate-500">Unit price</p>
-              <p className="mt-3 text-base font-semibold text-slate-900">৳{pricingSummary.effectiveUnitPrice.toFixed(2)}</p>
-            </div>
-            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs uppercase tracking-[0.32em] text-slate-500">Total price</p>
-              <p className="mt-3 text-base font-semibold text-slate-900">৳{pricingSummary.totalPrice.toFixed(2)}</p>
-            </div>
-          </div>
         </div>
 
         <div className="overflow-x-auto pb-2">
