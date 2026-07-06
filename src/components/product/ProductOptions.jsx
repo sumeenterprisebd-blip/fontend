@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect } from 'react';
-import QuantitySelector from './QuantitySelector';
 import { trackEvent } from '@/utils/analytics';
 import { getPricingTierSummary, normalizePricingTiers } from '@/utils/pricingTiers';
 
@@ -13,7 +12,6 @@ export default function ProductOptions({ product, onAddToCart }) {
   const discountFromOriginal = hasOriginalDiscount
     ? Math.round(((product.originalPrice - basePrice) / product.originalPrice) * 100)
     : 0;
-  const discountPercent = hasOriginalDiscount ? discountFromOriginal : (product?.discount || 0);
 
   // Initialize state when product loads
   useEffect(() => {
@@ -21,22 +19,20 @@ export default function ProductOptions({ product, onAddToCart }) {
     setQuantity(1);
   }, [product]);
 
-  const handleQuantityDecrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleTierSelect = (tier) => {
+    if (!tier) return;
+    const targetQuantity = tier.minQty;
+    setQuantity(Math.min(Math.max(1, targetQuantity), maxQuantity));
   };
 
-  const handleQuantityIncrease = () => {
-    if (quantity < maxQuantity) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const handleQuantityChange = (nextQuantity) => {
-    const safeQuantity = Math.min(Math.max(1, Number(nextQuantity) || 1), maxQuantity || 999);
+  const handleQuantityInput = (value) => {
+    const parsed = Number(value);
+    const safeQuantity = Number.isFinite(parsed) && parsed >= 1 ? Math.min(Math.max(1, Math.floor(parsed)), maxQuantity) : 1;
     setQuantity(safeQuantity);
   };
+
+  const activeTier = pricingSummary.appliedTier;
+  const featuredTierIndex = tierList.length > 0 ? tierList.length - 1 : 0;
 
   const handleAddToCart = () => {
     if (product.stock === 0) {
@@ -91,13 +87,29 @@ export default function ProductOptions({ product, onAddToCart }) {
 
       {/* Product Options Card */}
       <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 lg:p-8 border border-gray-100">
-        <QuantitySelector
-          quantity={quantity}
-          maxQuantity={maxQuantity}
-          onDecrease={handleQuantityDecrease}
-          onIncrease={handleQuantityIncrease}
-          onChange={handleQuantityChange}
-        />
+        <div className="mb-5 rounded-[26px] border border-slate-200 bg-slate-50 p-4 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Buy by quantity</p>
+              <h2 className="mt-2 text-xl font-bold text-slate-900">Choose the best price tier</h2>
+            </div>
+            <div className="flex items-center gap-2 rounded-3xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+              <label htmlFor="product-quantity" className="text-sm font-medium text-slate-700">Quantity</label>
+              <input
+                id="product-quantity"
+                type="number"
+                value={quantity}
+                min={1}
+                max={maxQuantity}
+                onChange={(event) => handleQuantityInput(event.target.value)}
+                className="w-[88px] rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+              />
+            </div>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Select a pricing tier or enter a custom quantity. The price will update automatically based on the correct tier.
+          </p>
+        </div>
 
         <div className="mb-6 rounded-[28px] border border-gray-200 bg-gradient-to-br from-white via-slate-50 to-slate-100 p-5 shadow-sm transition-all duration-300">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
@@ -161,13 +173,22 @@ export default function ProductOptions({ product, onAddToCart }) {
             {tierList.length > 0 ? (
               <div className="grid gap-3 lg:grid-cols-2">
                 {tierList.map((tier, index) => {
-                  const isActive = pricingSummary.appliedTier?.minQty === tier.minQty && pricingSummary.appliedTier?.maxQty === tier.maxQty;
+                  const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
+                  const badgeLabel = isActive
+                    ? 'Active tier'
+                    : index === 0
+                    ? 'Popular'
+                    : index === featuredTierIndex
+                    ? 'Best value'
+                    : null;
                   return (
-                    <div
+                    <button
+                      type="button"
                       key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
-                      className={`overflow-hidden rounded-[24px] border p-4 transition-all duration-300 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-[0_15px_45px_rgba(16,185,129,0.12)]' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
+                      onClick={() => handleTierSelect(tier)}
+                      className={`group overflow-hidden rounded-[24px] border p-4 text-left transition-all duration-300 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-[0_15px_45px_rgba(16,185,129,0.12)]' : 'border-slate-200 bg-slate-50 hover:border-slate-300'} focus:outline-none focus:ring-2 focus:ring-emerald-500/30`}
                     >
-                      <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-start justify-between gap-3">
                         <div>
                           <div className="text-sm font-semibold text-slate-900">
                             {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
@@ -182,13 +203,13 @@ export default function ProductOptions({ product, onAddToCart }) {
                         <div className="text-sm text-slate-600">
                           {isActive ? 'Current selection' : 'Tier price'}
                         </div>
-                        {isActive && (
-                          <span className="inline-flex items-center rounded-full bg-emerald-500 px-3 py-1 text-xs font-semibold text-white transition">
-                            Active tier
+                        {badgeLabel && (
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
+                            {badgeLabel}
                           </span>
                         )}
                       </div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
