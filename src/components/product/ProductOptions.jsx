@@ -99,10 +99,6 @@ export default function ProductOptions({ product, onAddToCart }) {
       <div className="bg-white rounded-[32px] shadow-sm p-5 sm:p-6 lg:p-8 border border-slate-200">
         <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-4 sm:p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="min-w-0">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Choose the best price tier</h2>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">Adjust quantity and pick a tier for the best available price.</p>
-            </div>
             <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">
               <label htmlFor="product-quantity" className="text-sm font-medium text-slate-600">Qty</label>
               <input
