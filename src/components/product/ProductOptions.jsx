@@ -114,8 +114,8 @@ export default function ProductOptions({ product, onAddToCart }) {
           </div>
         </div>
 
-        <div className="overflow-x-auto pb-2">
-          <div className="grid gap-4 grid-flow-col auto-cols-[minmax(280px,1fr)] sm:grid-flow-row sm:auto-cols-auto sm:grid-cols-2 xl:grid-cols-3">
+        <div className="pb-2">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
             {tierList.length > 0 ? (
               tierList.map((tier, index) => {
                 const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
@@ -133,7 +133,7 @@ export default function ProductOptions({ product, onAddToCart }) {
                     key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
                     onClick={() => handleTierSelect(tier)}
                     aria-pressed={isActive}
-                    className={`min-w-[280px] flex-shrink-0 sm:min-w-0 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} flex min-h-[220px] flex-col justify-between rounded-[28px] border p-5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
+                    className={`flex h-full flex-col justify-between rounded-[28px] border p-5 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
                   >
                     <div className="space-y-4">
                       <div className="flex items-start justify-between gap-4">
@@ -162,7 +162,6 @@ export default function ProductOptions({ product, onAddToCart }) {
                   </button>
                 );
               })
-
             ) : (
               <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
                 This product has no tiered pricing. The regular price applies for every quantity.
