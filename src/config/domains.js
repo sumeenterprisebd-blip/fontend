@@ -1,29 +1,29 @@
 /**
  * Domain Configuration
- * Supports both deshwear.com and deshwear.shop
+ * Supports both sumetraders.com and sumetraders.shop
  * Both domains point to the same application and share the same backend API
  */
 
 // Primary domain configuration
 export const DOMAINS = {
     SHOP: {
-        name: 'deshwear.shop',
-        primary: 'https://www.deshwear.shop',
+        name: 'sumetraders.shop',
+        primary: 'https://www.sumetraders.shop',
         aliases: [
-            'https://deshwear.shop',
-            'https://www.deshwear.shop',
-            'http://deshwear.shop',
-            'http://www.deshwear.shop',
+            'https://sumetraders.shop',
+            'https://www.sumetraders.shop',
+            'http://sumetraders.shop',
+            'http://www.sumetraders.shop',
         ],
     },
     COM: {
-        name: 'deshwear.com',
-        primary: 'https://www.deshwear.com',
+        name: 'sumetraders.com',
+        primary: 'https://www.sumetraders.com',
         aliases: [
-            'https://deshwear.com',
-            'https://www.deshwear.com',
-            'http://deshwear.com',
-            'http://www.deshwear.com',
+            'https://sumetraders.com',
+            'https://www.sumetraders.com',
+            'http://sumetraders.com',
+            'http://www.sumetraders.com',
         ],
     },
 };
@@ -36,11 +36,11 @@ export const getCurrentDomainInfo = () => {
 
     const hostname = window.location.hostname;
 
-    if (hostname.includes('deshwear.com')) {
+    if (hostname.includes('sumetraders.com')) {
         return DOMAINS.COM;
     }
 
-    if (hostname.includes('deshwear.shop')) {
+    if (hostname.includes('sumetraders.shop')) {
         return DOMAINS.SHOP;
     }
 
@@ -79,11 +79,11 @@ export const getDomainBranding = () => {
     // Both domains share the same branding for now
     // But this allows for domain-specific customization in the future
     return {
-        siteName: 'DeshWear',
+        siteName: 'Sume Traders',
         domain: domainInfo.name,
-        email: 'support@deshwear.com',
+        email: 'support@sumetraders.com',
         description:
-            'Your Destination for Quality Fashion in Bangladesh. Find the perfect outfit at DeshWear with fast delivery and free shipping.',
+            'Your Destination for Quality Fashion in Bangladesh. Find the perfect outfit at Sume Traders with fast delivery and free shipping.',
     };
 };
 
@@ -100,12 +100,12 @@ export const getDomainBranding = () => {
  *    - See server.js CORS configuration
  * 
  * 3. Environment Variables:
- *    - NEXTAUTH_URL: https://www.deshwear.shop (primary)
- *    - NEXT_PUBLIC_SITE_URL: https://www.deshwear.shop (for SEO fallback)
+ *    - NEXTAUTH_URL: https://www.sumetraders.shop (primary)
+ *    - NEXT_PUBLIC_SITE_URL: https://www.sumetraders.shop (for SEO fallback)
  *    - Both domains will work due to proper CORS headers
  * 
  * 4. DNS Configuration:
- *    - deshwear.com → Vercel deployment
- *    - deshwear.shop → Vercel deployment
+ *    - sumetraders.com → Vercel deployment
+ *    - sumetraders.shop → Vercel deployment
  *    - Both should point to the same Vercel URL
  */

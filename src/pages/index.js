@@ -10,7 +10,7 @@ import { optimizeCloudinaryUrl } from '@/utils/imageOptimization';
 const TopSellingSection = dynamic(() => import('@/components/Home/TopSellingSection'), { ssr: false });
 const NewArrivalsSection = dynamic(() => import('@/components/Home/NewArrivalsSection'), { ssr: false });
 
-const WhyDeshWearSection = dynamic(() => import('@/components/Home/WhyDeshWearSection'), {
+const WhySumeTradersSection = dynamic(() => import('@/components/Home/WhySumeTradersSection'), {
   ssr: false,
   loading: () => (
     <section className="w-full bg-white py-12 lg:py-16">
@@ -75,13 +75,13 @@ export default function Home({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "DeshWear",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://deshwear.com",
+    name: "Sume Traders",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://sumetraders.com",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || "https://deshwear.com"
+        urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL || "https://sumetraders.com"
           }/search?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
@@ -91,9 +91,9 @@ export default function Home({
   return (
     <>
       <SEO
-        title="DeshWear - Your Destination for Quality Fashion in Bangladesh"
-        description="Find the perfect outfit at DeshWear. We offer a curated collection of clothing for every occasion, from casual wear to formal attire. Enjoy fast delivery and free shipping on orders over ৳500."
-        keywords="clothing store Bangladesh, fashion deshwear, online shopping BD, men's wear, women's wear"
+        title="Sume Traders - Your Destination for Quality Fashion in Bangladesh"
+        description="Find the perfect outfit at Sume Traders. We offer a curated collection of clothing for every occasion, from casual wear to formal attire. Enjoy fast delivery and free shipping on orders over ৳500."
+        keywords="clothing store Bangladesh, fashion sumetraders, online shopping BD, men's wear, women's wear"
         type="website"
         structuredData={structuredData}
       />
@@ -192,7 +192,7 @@ export default function Home({
               </section>
             }
           >
-            <WhyDeshWearSection />
+          <WhySumeTradersSection />
           </LazyMount>
 
           <LazyMount
@@ -245,10 +245,10 @@ export async function getStaticProps(context) {
         const parsed = new URL(trimmed);
         const host = parsed.hostname;
         const upgradeHosts = new Set([
-          'deshwear.shop',
-          'www.deshwear.shop',
-          'deshwear.com',
-          'www.deshwear.com',
+          'sumetraders.shop',
+          'www.sumetraders.shop',
+          'sumetraders.com',
+          'www.sumetraders.com',
           'res.cloudinary.com',
         ]);
         if (upgradeHosts.has(host) || host.endsWith('.fbcdn.net') || host.endsWith('.fbsbx.com')) {

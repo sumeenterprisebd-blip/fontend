@@ -4,8 +4,8 @@ export default function TermsOfService() {
     return (
         <>
             <SEO
-                title="Terms of Service | DeshWear"
-                description="Read our terms of service to understand the rules and regulations for using DeshWear's website and services."
+                title="Terms of Service | Sume Traders"
+                description="Read our terms of service to understand the rules and regulations for using Sume Traders's website and services."
                 keywords="terms of service, terms and conditions, user agreement, legal terms"
             />
 
@@ -19,7 +19,7 @@ export default function TermsOfService() {
                             <section className="mb-8">
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Agreement to Terms</h2>
                                 <p className="text-gray-700 mb-4">
-                                    By accessing and using DeshWear ("the Website"), you agree to be bound by these Terms of Service
+                                    By accessing and using Sume Traders ("the Website"), you agree to be bound by these Terms of Service
                                     ("Terms"). If you do not agree to these Terms, please do not use our Website or services.
                                 </p>
                             </section>
@@ -101,7 +101,7 @@ export default function TermsOfService() {
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Intellectual Property Rights</h2>
                                 <p className="text-gray-700 mb-4">
                                     The service and its entire contents, features, and functionality (including but not limited to all
-                                    information, software, text, displays, images, video, and audio) are owned by DeshWear, its
+                                    information, software, text, displays, images, video, and audio) are owned by Sume Traders, its
                                     licensors, or other providers of such material and are protected by copyright, trademark, and other
                                     intellectual property laws.
                                 </p>
@@ -110,7 +110,7 @@ export default function TermsOfService() {
                             <section className="mb-8">
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Limitation of Liability</h2>
                                 <p className="text-gray-700 mb-4">
-                                    In no event shall DeshWear, its directors, employees, partners, agents, suppliers, or affiliates
+                                    In no event shall Sume Traders, its directors, employees, partners, agents, suppliers, or affiliates
                                     be liable for any indirect, incidental, special, consequential, or punitive damages, including
                                     without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
                                 </p>
@@ -125,7 +125,7 @@ export default function TermsOfService() {
                             <section className="mb-8">
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">10. Disclaimer of Warranties</h2>
                                 <p className="text-gray-700 mb-4">
-                                    The service is provided on an "AS IS" and "AS AVAILABLE" basis. DeshWear makes no warranties,
+                                    The service is provided on an "AS IS" and "AS AVAILABLE" basis. Sume Traders makes no warranties,
                                     expressed or implied, and hereby disclaims all other warranties including, without limitation,
                                     implied warranties of merchantability, fitness for a particular purpose, or non-infringement of
                                     intellectual property.
@@ -136,7 +136,7 @@ export default function TermsOfService() {
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Governing Law</h2>
                                 <p className="text-gray-700 mb-4">
                                     These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in
-                                    which DeshWear operates, without regard to its conflict of law provisions.
+                                    which Sume Traders operates, without regard to its conflict of law provisions.
                                 </p>
                             </section>
 
@@ -156,7 +156,7 @@ export default function TermsOfService() {
                                 </p>
                                 <div className="bg-gray-50 p-4 rounded-lg">
                                     <p className="text-gray-700">
-                                        <strong>Email:</strong> legal@deshwear.com<br />
+                                        <strong>Email:</strong> legal@sumetraders.com<br />
                                         <strong>Website:</strong> <a href="/contact" className="text-blue-600 hover:underline">Contact Us</a>
                                     </p>
                                 </div>

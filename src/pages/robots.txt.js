@@ -3,7 +3,7 @@ const getSiteBaseUrl = (req) => {
     const host = (req?.headers?.["x-forwarded-host"] || req?.headers?.host || "").split(",")[0].trim();
 
     if (host) return `${proto}://${host}`;
-    return process.env.NEXT_PUBLIC_SITE_URL || "https://www.deshwear.shop";
+    return process.env.NEXT_PUBLIC_SITE_URL || "https://www.sumetraders.shop";
 };
 
 export async function getServerSideProps({ res, req }) {

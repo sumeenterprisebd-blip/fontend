@@ -134,11 +134,11 @@ export default function ShopPage({
 
   // Generate SEO data
   const seoTitle = selectedCategory !== 'All Products'
-    ? `${selectedCategory} Collection - DeshWear`
-    : 'Shop All Products - DeshWear';
+    ? `${selectedCategory} Collection - Sume Traders`
+    : 'Shop All Products - Sume Traders';
 
   const seoDescription = selectedCategory !== 'All Products'
-    ? `Browse ${selectedCategory.toLowerCase()} at DeshWear. Quality products with affordable prices and fast delivery across Bangladesh.`
+    ? `Browse ${selectedCategory.toLowerCase()} at Sume Traders. Quality products with affordable prices and fast delivery across Bangladesh.`
     : 'Explore our complete clothing collection. Find the perfect style for every occasion with free shipping on orders over ৳500.';
 
   return (

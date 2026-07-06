@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
                             <section className="mb-8">
                                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>
                                 <p className="text-gray-700 mb-4">
-                                    Welcome to DeshWear. We respect your privacy and are committed to protecting your personal data.
+                                    Welcome to Sume Traders. We respect your privacy and are committed to protecting your personal data.
                                     This privacy policy will inform you about how we look after your personal data when you visit our
                                     website and tell you about your privacy rights and how the law protects you.
                                 </p>
@@ -116,7 +116,7 @@ export default function PrivacyPolicy() {
                                 </p>
                                 <div className="bg-gray-50 p-4 rounded-lg">
                                     <p className="text-gray-700">
-                                        <strong>Email:</strong> privacy@deshwear.com<br />
+                                        <strong>Email:</strong> privacy@sumetraders.com<br />
                                         <strong>Website:</strong> <a href="/contact" className="text-blue-600 hover:underline">Contact Us</a>
                                     </p>
                                 </div>

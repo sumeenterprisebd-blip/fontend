@@ -16,7 +16,7 @@ export default function FooterLogo() {
           {isExternalLogo ? (
             <img
               src={logoSrc}
-              alt={settings?.siteName || 'DeshWear'}
+              alt={settings?.siteName || 'Sume Traders'}
               className="w-full h-full object-contain"
               loading="lazy"
               decoding="async"
@@ -25,7 +25,7 @@ export default function FooterLogo() {
           ) : (
             <Image
               src={logoSrc}
-              alt={settings?.siteName || 'DeshWear'}
+              alt={settings?.siteName || 'Sume Traders'}
               width={56}
               height={56}
               className="w-full h-full object-contain"
@@ -37,7 +37,7 @@ export default function FooterLogo() {
       </div>
       <div>
         <h3 className="text-2xl font-bold text-white mb-2">
-          {settings?.siteName || 'DeshWear'}
+          {settings?.siteName || 'Sume Traders'}
         </h3>
         <p className="text-sm text-white/70 leading-relaxed">
           {settings?.tagline || 'Everyday essentials, elevated. Limited drops, premium fits, and a smooth checkout experience.'}

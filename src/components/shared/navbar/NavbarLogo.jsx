@@ -25,7 +25,7 @@ export default function NavbarLogo() {
             {isExternalLogo ? (
               <img
                 src={logoSrc}
-                alt={settings?.siteName || 'DeshWear'}
+                alt={settings?.siteName || 'Sume Traders'}
                 className="w-full h-full object-cover"
                 loading="eager"
                 decoding="async"
@@ -37,7 +37,7 @@ export default function NavbarLogo() {
             ) : (
               <Image
                 src={logoSrc}
-                alt={settings?.siteName || 'DeshWear'}
+                alt={settings?.siteName || 'Sume Traders'}
                 width={40}
                 height={40}
                 className="w-full h-full object-cover"
@@ -50,7 +50,7 @@ export default function NavbarLogo() {
           </div>
         )}
         <span className="sr-only sm:not-sr-only text-base sm:text-xl lg:text-2xl font-bold text-[#0a1a44]">
-          {settings?.siteName || 'DeshWear'}
+          {settings?.siteName || 'Sume Traders'}
         </span>
       </Link>
     </div>

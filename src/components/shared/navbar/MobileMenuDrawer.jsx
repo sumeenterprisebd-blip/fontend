@@ -225,7 +225,7 @@ export default function MobileMenuDrawer({
 
                     <div className="p-4 border-t border-gray-200 bg-gray-50 flex-shrink-0">
                         <p className="text-xs text-gray-500 text-center leading-relaxed">
-                            © 2026 <span className="font-bold">DeshWear</span>
+                            © 2026 <span className="font-bold">Sume Traders</span>
                             <br />All rights reserved
                         </p>
                     </div>

@@ -11,12 +11,12 @@ export default function ContactPage() {
     '@type': 'ContactPage',
     mainEntity: {
       '@type': 'Organization',
-      name: 'DeshWear',
+      name: 'Sume Traders',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+880-XXX-XXXXXX',
         contactType: 'Customer Service',
-        email: 'support@deshwear.com',
+        email: 'support@sumetraders.com',
         areaServed: 'BD',
         availableLanguage: ['Bengali', 'English']
       }
@@ -26,9 +26,9 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        title="Contact DeshWear - Customer Support"
+        title="Contact Sume Traders - Customer Support"
         description="Need help? Our customer support team is ready to assist you with orders, products, or any questions. Reach us via email or contact form."
-        keywords="contact deshwear, customer support, help center"
+        keywords="contact sumetraders, customer support, help center"
         type="website"
         structuredData={structuredData}
       />
@@ -84,10 +84,10 @@ export default function ContactPage() {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Email</h3>
                       <Link
-                        href="mailto:deshwear.store@gmail.com"
+                        href="mailto:support@sumetraders.com"
                         className="text-gray-800 hover:text-gray-900 font-semibold transition-colors block break-words"
                       >
-                        deshwear.store@gmail.com
+                        support@sumetraders.com
                       </Link>
                     </div>
                   </div>
@@ -143,28 +143,28 @@ export default function ContactPage() {
                   <h3 className="text-xs font-bold text-gray-400 uppercase mb-5 tracking-wider">Follow Us</h3>
                   <div className="flex gap-3">
                     <Link
-                      href="https://www.facebook.com/deshwear10/"
+                      href="https://www.facebook.com/sumetraders/"
                       className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
                       aria-label="Facebook"
                     >
                       <FaFacebook className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
                     </Link>
                     <Link
-                      href="https://www.facebook.com/deshwear10/"
+                      href="https://www.facebook.com/sumetraders/"
                       className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
                       aria-label="Twitter"
                     >
                       <FaTwitter className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
                     </Link>
                     <Link
-                      href="https://www.instagram.com/deshwear10/"
+                      href="https://www.instagram.com/sumetraders/"
                       className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
                       aria-label="Instagram"
                     >
                       <FaInstagram className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
                     </Link>
                     <Link
-                      href="https://www.linkedin.com/company/deshwear10/"
+                      href="https://www.linkedin.com/company/sumetraders/"
                       className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
                       aria-label="LinkedIn"
                     >

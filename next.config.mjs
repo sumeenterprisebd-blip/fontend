@@ -72,22 +72,22 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.deshwear.com",
+        hostname: "www.sumetraders.com",
         pathname: "/uploads/**",
       },
       {
         protocol: "https",
-        hostname: "deshwear.com",
+        hostname: "sumetraders.com",
         pathname: "/uploads/**",
       },
       {
         protocol: "https",
-        hostname: "www.deshwear.shop",
+        hostname: "www.sumetraders.shop",
         pathname: "/uploads/**",
       },
       {
         protocol: "https",
-        hostname: "deshwear.shop",
+        hostname: "sumetraders.shop",
         pathname: "/uploads/**",
       },
       {

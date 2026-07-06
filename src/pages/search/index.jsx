@@ -141,8 +141,8 @@ export default function SearchPage() {
     return (
         <>
             <SEO
-                title={currentQuery ? `Search: ${currentQuery} - DeshWear` : 'Search Products - DeshWear'}
-                description={currentQuery ? `Search results for "${currentQuery}". Find what you're looking for at DeshWear.` : 'Search our complete product catalog. Find clothing and accessories for every style.'}
+                title={currentQuery ? `Search: ${currentQuery} - Sume Traders` : 'Search Products - Sume Traders'}
+                description={currentQuery ? `Search results for "${currentQuery}". Find what you're looking for at Sume Traders.` : 'Search our complete product catalog. Find clothing and accessories for every style.'}
                 noindex={true}
             />
             <div className="min-h-screen bg-gray-50">

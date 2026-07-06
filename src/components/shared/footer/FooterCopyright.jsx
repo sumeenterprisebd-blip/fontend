@@ -7,7 +7,7 @@ export default function FooterCopyright() {
     <div className="border-t border-white/10 py-6">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
         <p>
-          © {currentYear} DeshWear. All rights reserved.
+          © {currentYear} Sume Traders. All rights reserved.
         </p>
         <div className="flex gap-6">
           <Link

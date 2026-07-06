@@ -4,9 +4,9 @@ export default function ShippingPolicyPage() {
     return (
         <>
             <SEO
-                title="Shipping Policy | DeshWear"
-                description="Review DeshWear's shipping timelines, delivery areas, and shipping fees."
-                keywords="shipping policy, delivery time, deshwear shipping"
+                title="Shipping Policy | Sume Traders"
+                description="Review Sume Traders's shipping timelines, delivery areas, and shipping fees."
+                keywords="shipping policy, delivery time, sumetraders shipping"
             />
 
             <div className="min-h-screen bg-gray-50 py-12">

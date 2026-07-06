@@ -4,9 +4,9 @@ export default function ReturnPolicyPage() {
     return (
         <>
             <SEO
-                title="Return Policy | DeshWear"
-                description="Learn about DeshWear's return and exchange policy, eligibility, timelines, and how to start a return."
-                keywords="return policy, exchange policy, deshwear returns"
+                title="Return Policy | Sume Traders"
+                description="Learn about Sume Traders's return and exchange policy, eligibility, timelines, and how to start a return."
+                keywords="return policy, exchange policy, sumetraders returns"
             />
 
             <div className="min-h-screen bg-gray-50 py-12">

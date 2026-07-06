@@ -9,11 +9,11 @@ export function useAdminSettings() {
   } = useSettings();
 
   const [settings, setSettings] = useState({
-    siteName: "DeshWear",
+    siteName: "Sume Traders",
     logo: "/logo.jpeg",
     siteDescription: "Premium fashion e-commerce platform",
-    siteEmail: "admin@deshwear.com",
-    sitePhone: "+8801995794410",
+    siteEmail: "admin@sumetraders.com",
+    sitePhone: "+01835847678",
     currency: "BDT",
     taxRate: "10",
     shippingFee: "15",

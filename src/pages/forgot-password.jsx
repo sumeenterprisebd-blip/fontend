@@ -197,7 +197,7 @@ export default function ForgotPasswordPage() {
     return (
         <>
             <Head>
-                <title>Forgot Password | DeshWear</title>
+                <title>Forgot Password | Sume Traders</title>
             </Head>
 
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 py-12 px-4 sm:px-6 lg:px-8">

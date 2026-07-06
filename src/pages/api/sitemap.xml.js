@@ -1,6 +1,6 @@
 // pages/api/sitemap.xml.js
 export default async function handler(req, res) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://deshwear.shop";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumetraders.shop";
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   try {

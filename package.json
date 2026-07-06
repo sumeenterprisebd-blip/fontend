@@ -9,7 +9,7 @@
     "lint": "eslint",
     "analyze": "node -e \"process.env.ANALYZE='true'; require('child_process').execSync('npm run build', { stdio: 'inherit' })\"",
     "perf": "node scripts/test-performance.js",
-    "perf:prod": "node -e \"process.env.SITE_URL='https://deshwear.com'; require('./scripts/test-performance.js')\""
+    "perf:prod": "node -e \"process.env.SITE_URL='https://sumetraders.com'; require('./scripts/test-performance.js')\""
   },
   "dependencies": {
     "@babel/parser": "^7.29.7",

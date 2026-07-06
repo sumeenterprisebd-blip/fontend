@@ -287,7 +287,7 @@ export default function OrderSuccessPage() {
 
   return (
     <>
-      <SEO title="Order Success - DeshWear" description="Your order was placed successfully. View your order summary and tracking options." />
+      <SEO title="Order Success - Sume Traders" description="Your order was placed successfully. View your order summary and tracking options." />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Order Success' }]} />
       <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

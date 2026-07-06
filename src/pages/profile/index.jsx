@@ -46,7 +46,7 @@ export default function ProfilePage() {
   return (
     <>
       <Head>
-        <title>My Profile |   DeshWear</title>
+        <title>My Profile |   Sume Traders</title>
         <meta name="description" content="Manage your account information, address, and preferences" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

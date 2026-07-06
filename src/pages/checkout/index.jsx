@@ -158,7 +158,7 @@ export default function CheckoutPage() {
     return (
       <>
         <SEO
-          title="Secure Checkout - DeshWear"
+          title="Secure Checkout - Sume Traders"
           description="Complete your purchase securely. Enter your shipping details and choose your preferred payment method for fast delivery."
           noindex={true}
         />

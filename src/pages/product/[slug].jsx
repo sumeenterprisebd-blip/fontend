@@ -185,11 +185,11 @@ export default function ProductDetailPage({ initialProduct = null, initialReview
           "image": product.images || [product.image],
           "brand": {
             "@type": "Brand",
-            "name": "DeshWear"
+            "name": "Sume Traders"
           },
           "offers": {
             "@type": "Offer",
-            "url": `https://deshwear.shop/product/${product.slug}`,
+            "url": `https://sumetraders.shop/product/${product.slug}`,
             "priceCurrency": "BDT",
             "price": product.price,
             "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",

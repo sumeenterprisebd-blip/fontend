@@ -84,7 +84,7 @@ export default function CartPage() {
     return (
       <>
         <SEO
-          title="Your Shopping Cart - DeshWear"
+          title="Your Shopping Cart - Sume Traders"
           description="Review your selected items and proceed to checkout. Your cart is saved for your convenience."
           noindex={true}
           structuredData={cartStructuredData}
@@ -102,7 +102,7 @@ export default function CartPage() {
   return (
     <>
       <SEO
-        title="Your Shopping Cart - DeshWear"
+        title="Your Shopping Cart - Sume Traders"
         description="Review your selected items and proceed to checkout. Your cart is saved for your convenience."
         noindex={true}
         structuredData={cartStructuredData}

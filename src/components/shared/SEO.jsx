@@ -31,7 +31,7 @@ export default function SEO({
     const defaultStructuredData = {
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'DeshWear',
+        name: 'Sume Traders',
         description: 'Premium Online Fashion Store',
         url: siteUrl,
         logo: `${siteUrl}/logo.jpeg`,
@@ -43,13 +43,13 @@ export default function SEO({
             availableLanguage: 'Bengali'
         },
         sameAs: [
-            'https://www.facebook.com/deshwear',
-            'https://www.instagram.com/deshwear',
-            'https://twitter.com/deshwear'
+            'https://www.facebook.com/sumetraders',
+            'https://www.instagram.com/sumetraders',
+            'https://twitter.com/sumetraders'
         ]
     };
 
-    const fullTitle = title.includes('DeshWear') ? title : `${title} | DeshWear`;
+    const fullTitle = title.includes('Sume Traders') ? title : `${title} | Sume Traders`;
     const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
     return (
@@ -59,7 +59,7 @@ export default function SEO({
             <meta name="title" content={fullTitle} />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
-            <meta name="author" content="DeshWear" />
+            <meta name="author" content="Sume Traders" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
             {/* Robots */}
@@ -80,7 +80,7 @@ export default function SEO({
             <meta property="og:image" content={ogImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
-            <meta property="og:site_name" content="DeshWear" />
+            <meta property="og:site_name" content="Sume Traders" />
             <meta property="og:locale" content="en_US" />
 
             {/* Twitter */}
@@ -89,14 +89,14 @@ export default function SEO({
             <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={ogImage} />
-            <meta name="twitter:creator" content="@deshwear" />
+            <meta name="twitter:creator" content="@sumetraders" />
 
             {/* Additional Meta Tags */}
             <meta name="theme-color" content="#2563eb" />
             <meta name="mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-            <meta name="apple-mobile-web-app-title" content="DeshWear" />
+            <meta name="apple-mobile-web-app-title" content="Sume Traders" />
 
             {/* Favicon */}
             <link rel="icon" href="/favicon.ico" sizes="any" />

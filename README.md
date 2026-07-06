@@ -1,4 +1,4 @@
-# DeshWear E-Commerce Frontend
+# Sume Traders E-Commerce Frontend
 
 A high-performance Next.js e-commerce platform with optimized image delivery, fast page loads, and a full-featured Admin Dashboard.
 

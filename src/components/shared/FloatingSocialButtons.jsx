@@ -12,7 +12,7 @@ export default function FloatingSocialButtons() {
     const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+8801835847678';
     const whatsappDigits = String(rawNumber || '').replace(/[^\d]/g, '');
 
-    const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER_URL || 'https://m.me/deshwear10';
+    const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER_URL || 'https://m.me/sumetraders';
 
     const context = useMemo(() => {
         if (typeof window === 'undefined') {

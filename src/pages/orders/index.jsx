@@ -214,7 +214,7 @@ export default function OrdersPage() {
         return (
             <>
                 <SEO
-                    title="My Orders - DeshWear"
+                    title="My Orders - Sume Traders"
                     description="View your order history and track current deliveries. Check order status and leave reviews for delivered items."
                     noindex={true}
                     structuredData={ordersStructuredData}
@@ -232,7 +232,7 @@ export default function OrdersPage() {
     return (
         <>
             <SEO
-                title="My Orders - DeshWear"
+                title="My Orders - Sume Traders"
                 description="View your order history and track current deliveries. Check order status and leave reviews for delivered items."
                 noindex={true}
                 structuredData={ordersStructuredData}

@@ -6,12 +6,12 @@ import { scheduleWork } from "@/utils/scheduleWork";
 const SettingsContext = createContext();
 
 const DEFAULT_SETTINGS = {
-  siteName: "DeshWear",
+  siteName: "Sume Traders",
   logo: "/logo.jpeg",
   favicon: "/favicon.ico",
   tagline: "Your Premium Fashion Destination",
-  email: "deshwear.store@gmail.com",
-  phone: "+8801995794410",
+  email: "support@sumetraders.com",
+  phone: "+01835847678",
   address: "",
   gtmId: "",
   facebookPixelId: "",

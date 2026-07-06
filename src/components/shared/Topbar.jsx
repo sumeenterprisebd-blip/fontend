@@ -31,10 +31,10 @@ export default function Topbar() {
               +1 (234) 567-890
             </Link>
             <Link
-              href="mailto:support@deshwear.com"
+              href="mailto:support@sumetraders.com"
               className="hidden lg:inline hover:text-gray-300 transition-colors"
             >
-              support@deshwear.com
+              support@sumetraders.com
             </Link>
             <Link
               href="/track-order"

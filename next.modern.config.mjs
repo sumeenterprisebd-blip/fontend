@@ -13,8 +13,8 @@ const nextConfig = {
         path: cdnUrl ? `${cdnUrl}/_next/image` : undefined,
         remotePatterns: [
             { hostname: "localhost", port: "5000", pathname: "/uploads/**" },
-            { protocol: "https", hostname: "www.deshwear.com", pathname: "/uploads/**" },
-            { protocol: "https", hostname: "deshwear.com", pathname: "/uploads/**" },
+            { protocol: "https", hostname: "www.sumetraders.com", pathname: "/uploads/**" },
+            { protocol: "https", hostname: "sumetraders.com", pathname: "/uploads/**" },
             { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
             { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
             { protocol: "https", hostname: "cdn.shopify.com", pathname: "/**" },

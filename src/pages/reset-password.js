@@ -61,7 +61,7 @@ export default function ResetPassword() {
                         <HiLockClosed className="h-8 w-8 text-white" />
                     </span>
                     <h2 className="text-3xl font-extrabold text-center mb-2 text-blue-700 tracking-tight">Reset Your Password</h2>
-                    <p className="text-gray-500 text-center text-base">Create a new password for your DeshWear account.</p>
+                    <p className="text-gray-500 text-center text-base">Create a new password for your Sume Traders account.</p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>

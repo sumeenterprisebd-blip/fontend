@@ -1,23 +1,23 @@
 // API Configuration
-// Both deshwear.com and deshwear.shop use the same API backend
+// Both sumetraders.com and sumetraders.shop use the same API backend
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
 // Get the current domain for domain-specific configurations
 export const getCurrentDomain = () => {
-  if (typeof window === 'undefined') return process.env.NEXT_PUBLIC_SITE_URL || 'https://www.deshwear.shop';
+  if (typeof window === 'undefined') return process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sumetraders.shop';
   return window.location.origin;
 };
 
 // Check which domain is being used
-export const isDeshwearShop = () => {
+export const isSumetradersShop = () => {
   const domain = getCurrentDomain();
-  return domain.includes('deshwear.shop');
+  return domain.includes('sumetraders.shop');
 };
 
-export const isDeshwearCom = () => {
+export const isSumetradersCom = () => {
   const domain = getCurrentDomain();
-  return domain.includes('deshwear.com');
+  return domain.includes('sumetraders.com');
 };
 
 // API Endpoints
