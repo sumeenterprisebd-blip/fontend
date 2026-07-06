@@ -129,6 +129,7 @@ export const buildProductData = (formData) => {
 };
 
 /**
+ * 
  * Converts product object to form data
  */
 export const productToFormData = (product) => ({
