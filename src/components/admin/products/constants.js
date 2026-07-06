@@ -11,6 +11,7 @@ export const INITIAL_FORM_DATA = {
   isComboOffer: false,
   comboPrice: "",
   comboDiscount: "",
+  pricingTiers: [],
   freeDelivery: false,
   freeDeliveryMinQty: "2",
   category: "",

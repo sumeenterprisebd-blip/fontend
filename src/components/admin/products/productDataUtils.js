@@ -105,6 +105,19 @@ export const buildProductData = (formData) => {
     productData.comboDiscount = parseFloat(formData.comboDiscount);
   }
 
+  if (Array.isArray(formData.pricingTiers) && formData.pricingTiers.length > 0) {
+    productData.pricingTiers = formData.pricingTiers
+      .filter((tier) => tier && Number.isFinite(Number(tier.minQty)) && Number(tier.minQty) > 0 && Number.isFinite(Number(tier.price)))
+      .map((tier) => ({
+        minQty: Number(tier.minQty),
+        maxQty: tier.maxQty === "" || tier.maxQty === null || tier.maxQty === undefined ? null : Number(tier.maxQty),
+        price: Number(tier.price),
+      }))
+      .sort((a, b) => a.minQty - b.minQty);
+  } else if (Array.isArray(formData.pricingTiers)) {
+    productData.pricingTiers = [];
+  }
+
   if (formData.tags && formData.tags.trim()) {
     productData.tags = formData.tags
       .split(",")
@@ -157,4 +170,5 @@ export const productToFormData = (product) => ({
   isFeatured: product.isFeatured || false,
   isNewArrival: product.isNewArrival || false,
   isActive: product.isActive !== undefined ? product.isActive : true,
+  pricingTiers: Array.isArray(product.pricingTiers) ? product.pricingTiers : [],
 });

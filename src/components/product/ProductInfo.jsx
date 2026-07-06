@@ -1,7 +1,10 @@
 // Category & review display removed from price section per request
+import { getPricingTierSummary } from '@/utils/pricingTiers';
 
 export default function ProductInfo({ product }) {
   if (!product) return null;
+
+  const pricingSummary = getPricingTierSummary(product, 1);
 
   const discountPercent = product.originalPrice && product.price < product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -28,7 +31,7 @@ export default function ProductInfo({ product }) {
 
               <div className="mt-1 flex items-end gap-3 flex-wrap">
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight leading-none">
-                  ৳{product.price?.toFixed(2) || '0.00'}
+                  ৳{pricingSummary.effectiveUnitPrice.toFixed(2)}
                 </div>
 
                 {product.originalPrice && product.originalPrice > product.price && (
@@ -94,6 +97,30 @@ export default function ProductInfo({ product }) {
           )}
         </div>
       </div>
+
+      {Array.isArray(product.pricingTiers) && product.pricingTiers.length > 0 && (
+        <div className="mb-3 lg:mb-4 rounded-2xl border border-gray-200 bg-white p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <div className="text-sm font-semibold text-gray-900">Quantity-based pricing</div>
+              <div className="text-sm text-gray-600">Choose higher quantities to unlock better wholesale tiers.</div>
+            </div>
+          </div>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {product.pricingTiers
+              .slice()
+              .sort((a, b) => Number(a.minQty) - Number(b.minQty))
+              .map((tier, index) => (
+                <div key={`${tier.minQty}-${index}`} className="rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">
+                  <div className="text-sm font-semibold text-gray-900">
+                    {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+                  </div>
+                  <div className="mt-1 text-sm text-gray-700">৳{Number(tier.price).toFixed(2)} each</div>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
 
       {/* Stock Status: show low-stock warning or out-of-stock only */}
       {product.stock !== undefined && (
