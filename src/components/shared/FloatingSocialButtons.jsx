@@ -9,7 +9,7 @@ export default function FloatingSocialButtons() {
     const router = useRouter();
     const { user, isAuthenticated } = useAuth();
 
-    const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+8801995794410';
+    const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+8801835847678';
     const whatsappDigits = String(rawNumber || '').replace(/[^\d]/g, '');
 
     const messengerUrl = process.env.NEXT_PUBLIC_MESSENGER_URL || 'https://m.me/deshwear10';

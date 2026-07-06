@@ -100,10 +100,10 @@ export default function ContactPage() {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Phone</h3>
                       <Link
-                        href="tel:+8801995794410"
+                        href="tel:+8801835847678"
                         className="text-gray-800 hover:text-gray-900 font-semibold transition-colors block"
                       >
-                        +8801995794410
+                        +8801835847678
                       </Link>
                     </div>
                   </div>

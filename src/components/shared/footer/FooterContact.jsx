@@ -5,7 +5,7 @@ import { FiPhone } from '@react-icons/all-files/fi/FiPhone';
 
 const contactInfo = {
   address: 'Section-11,block-b,lane-1,house-55, Pallabi Mirpur Dhaka-1216',
-  phones: ['+8801995794410'],
+  phones: ['+8801835847678'],
   emails: ['deshwear.store@gmail.com'],
 };
 

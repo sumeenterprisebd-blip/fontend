@@ -49,7 +49,6 @@ export default function ProfilePage() {
         <title>My Profile |   DeshWear</title>
         <meta name="description" content="Manage your account information, address, and preferences" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.jpeg" />
       </Head>
 
       <div className="min-h-screen bg-gray-50 pb-20 lg:pb-8">
