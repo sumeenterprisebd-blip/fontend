@@ -111,52 +111,52 @@ export default function ProductOptions({ product, onAddToCart }) {
           </p>
         </div>
 
-        <div className="mt-6 rounded-[26px] border border-slate-200 bg-white p-4 shadow-sm">
-          {tierList.length > 0 ? (
-            <div className="grid gap-3 lg:grid-cols-2">
-              {tierList.map((tier, index) => {
-                const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
-                const badgeLabel = isActive
-                  ? 'Active tier'
-                  : index === 0
-                  ? 'Popular'
-                  : index === featuredTierIndex
-                  ? 'Best value'
-                  : null;
-                return (
-                  <button
-                    type="button"
-                    key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
-                    onClick={() => handleTierSelect(tier)}
-                    className={`group overflow-hidden rounded-[24px] border p-4 text-left transition-all duration-300 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-[0_15px_45px_rgba(16,185,129,0.12)]' : 'border-slate-200 bg-slate-50 hover:border-slate-300'} focus:outline-none focus:ring-2 focus:ring-emerald-500/30`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="text-sm font-semibold text-slate-900">
-                          {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+<div className="mt-4">
+            {tierList.length > 0 ? (
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {tierList.map((tier, index) => {
+                  const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
+                  const badgeLabel = isActive
+                    ? 'Active tier'
+                    : index === 0
+                    ? 'Popular'
+                    : index === featuredTierIndex
+                    ? 'Best value'
+                    : null;
+                  return (
+                    <button
+                      type="button"
+                      key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
+                      onClick={() => handleTierSelect(tier)}
+                      className={`group w-full rounded-3xl border p-4 text-left transition ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300'} focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="text-sm font-semibold text-slate-900">
+                            {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+                          </div>
+                          <div className="mt-1 text-xs text-slate-500">Unit price</div>
                         </div>
-                        <div className="mt-1 text-xs text-slate-500">Unit price</div>
+                        <div className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+                          ৳{tier.price.toFixed(2)}
+                        </div>
                       </div>
-                      <div className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
-                        ৳{tier.price.toFixed(2)}
+                      <div className="mt-4 flex items-center justify-between gap-2">
+                        <div className="text-sm text-slate-600">
+                          {isActive ? 'Selected tier' : 'Tier price'}
+                        </div>
+                        {badgeLabel && (
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-white'}`}>
+                            {badgeLabel}
+                          </span>
+                        )}
                       </div>
-                    </div>
-                    <div className="mt-3 flex items-center justify-between gap-2">
-                      <div className="text-sm text-slate-600">
-                        {isActive ? 'Current selection' : 'Tier price'}
-                      </div>
-                      {badgeLabel && (
-                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
-                          {badgeLabel}
-                        </span>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="rounded-[24px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
               This product has no quantity-based pricing. The regular price applies for every quantity.
             </div>
           )}
