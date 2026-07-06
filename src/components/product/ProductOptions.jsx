@@ -1,11 +1,12 @@
 import { useMemo, useState, useEffect } from 'react';
 import QuantitySelector from './QuantitySelector';
 import { trackEvent } from '@/utils/analytics';
-import { getPricingTierSummary } from '@/utils/pricingTiers';
+import { getPricingTierSummary, normalizePricingTiers } from '@/utils/pricingTiers';
 
 export default function ProductOptions({ product, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
   const maxQuantity = product?.stock || 999;
+  const tierList = useMemo(() => normalizePricingTiers(product?.pricingTiers), [product?.pricingTiers]);
   const pricingSummary = useMemo(() => getPricingTierSummary(product, quantity), [product, quantity]);
   const basePrice = Number(product?.price || 0);
   const hasOriginalDiscount = product?.originalPrice && product.originalPrice > basePrice;
@@ -99,29 +100,80 @@ export default function ProductOptions({ product, onAddToCart }) {
         />
 
         <div className="mb-5 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Live pricing</p>
               <p className="mt-1 text-lg font-semibold text-gray-900">৳{pricingSummary.effectiveUnitPrice.toFixed(2)} / unit</p>
             </div>
             <div className="text-right">
               <p className="text-sm font-semibold text-gray-900">Total ৳{pricingSummary.totalPrice.toFixed(2)}</p>
-              {pricingSummary.savings > 0 && (
+              {pricingSummary.savings > 0 ? (
                 <p className="text-sm text-green-700">Save ৳{pricingSummary.savings.toFixed(2)} ({pricingSummary.discountPercent}%)</p>
+              ) : (
+                <p className="text-sm text-gray-500">No quantity discount available.</p>
               )}
             </div>
           </div>
 
-          {pricingSummary.appliedTier ? (
-            <div className="mt-3 rounded-xl border border-green-200 bg-white/80 p-3 text-sm text-gray-700">
-              <span className="font-semibold text-gray-900">Tier {pricingSummary.appliedTier.minQty}</span>
-              {pricingSummary.appliedTier.maxQty ? `–${pricingSummary.appliedTier.maxQty}` : '+'} units: ৳{pricingSummary.appliedTier.price.toFixed(2)} each
-            </div>
-          ) : (
-            <div className="mt-3 rounded-xl border border-gray-200 bg-white/70 p-3 text-sm text-gray-600">
-              No quantity tier applied. Regular price is used.
-            </div>
-          )}
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {tierList.length > 0 ? (
+              tierList.map((tier, index) => {
+                const isActive = pricingSummary.appliedTier?.minQty === tier.minQty && pricingSummary.appliedTier?.maxQty === tier.maxQty;
+                return (
+                  <div
+                    key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
+                    className={`rounded-3xl border p-4 transition-all duration-200 ${isActive ? 'border-black bg-black/5 shadow-lg' : 'border-gray-200 bg-white hover:border-gray-300'}`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">
+                          {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+                        </div>
+                        <div className="mt-1 text-xs text-gray-500">Unit price</div>
+                      </div>
+                      <div className={`text-lg font-bold ${isActive ? 'text-black' : 'text-gray-900'}`}>
+                        ৳{tier.price.toFixed(2)}
+                      </div>
+                    </div>
+                    {isActive && (
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-black text-white px-3 py-1 text-xs font-semibold">
+                        <span>Selected tier</span>
+                      </div>
+                    )}
+                    {!isActive && pricingSummary.quantity >= tier.minQty && (tier.maxQty === null || pricingSummary.quantity <= tier.maxQty) && (
+                      <div className="mt-3 text-sm text-green-700">You qualify for this tier</div>
+                    )}
+                  </div>
+                );
+              })
+            ) : (
+              <div className="rounded-xl border border-gray-200 bg-white/80 p-4 text-sm text-gray-600">
+                No quantity discount available.
+              </div>
+            )}
+          </div>
+
+          <div className="mt-4 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-700">
+            {pricingSummary.appliedTier ? (
+              <div className="space-y-2">
+                <p className="font-semibold text-gray-900">Applied tier</p>
+                <p>
+                  Buying <span className="font-semibold">{pricingSummary.quantity}</span> unit{pricingSummary.quantity > 1 ? 's' : ''} gives you the tier price of{' '}
+                  <span className="font-semibold">৳{pricingSummary.appliedTier.price.toFixed(2)}</span> each.
+                </p>
+                <p className="text-sm text-gray-600">
+                  Regular per unit price is ৳{pricingSummary.basePrice.toFixed(2)}. You save ৳{pricingSummary.savings.toFixed(2)} on this purchase.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <p className="font-semibold text-gray-900">Regular price active</p>
+                <p className="text-sm text-gray-600">
+                  Quantity-based pricing is not available for this quantity. Increase the quantity to unlock the next tier.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Add to Cart Button */}

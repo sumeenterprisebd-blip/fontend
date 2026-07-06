@@ -94,21 +94,21 @@ const normalizeCartFromApi = async (cart, options = {}) => {
   let items = cart.items.map((item) => ({
     id: item._id,
     productId: item.product?._id || item.product,
-    name: item.product?.name || "Product",
-    image: item.product?.images?.[0] || item.product?.image || "/logo.jpeg",
-    price: item.product?.price || item.price || 0,
-    originalPrice: item.product?.originalPrice || null,
-    discountPercent: item.product?.discount || item.discountPercent || 0,
+    name: item.product?.name || item.name || "Product",
+    image: item.product?.images?.[0] || item.product?.image || item.image || "/logo.jpeg",
+    price: Number.isFinite(Number(item.price)) ? Number(item.price) : Number(item.product?.price || 0),
+    originalPrice: item.product?.originalPrice ?? item.originalPrice ?? null,
+    discountPercent: Number.isFinite(Number(item.product?.discount)) ? item.product.discount : item.discountPercent || 0,
     categoryId: item.product?.category?._id || item.product?.category || item.categoryId,
     categoryName: item.product?.category?.name || item.categoryName,
     category: item.product?.category || item.category,
     isComboOffer: !!item.product?.isComboOffer,
     freeDelivery: !!item.product?.freeDelivery,
-    freeDeliveryMinQty: typeof item.product?.freeDeliveryMinQty === "number" ? item.product.freeDeliveryMinQty : undefined,
+    freeDeliveryMinQty: typeof item.product?.freeDeliveryMinQty === "number" ? item.product.freeDeliveryMinQty : item.freeDeliveryMinQty,
     size: item.size,
     color: item.color,
     quantity: item.quantity,
-    stock: item.product?.stock || 0,
+    stock: item.product?.stock || item.stock || 0,
   }));
 
   if (hydrate) {
