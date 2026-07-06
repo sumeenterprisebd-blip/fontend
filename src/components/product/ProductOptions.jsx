@@ -86,14 +86,14 @@ export default function ProductOptions({ product, onAddToCart }) {
       {/* <ComboOfferDisplay product={product} /> */}
 
       {/* Product Options Card */}
-      <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 lg:p-8 border border-gray-100">
-        <div className="mb-5 rounded-[26px] border border-slate-200 bg-slate-50 p-4 shadow-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Buy by quantity</p>
-              <h2 className="mt-2 text-xl font-bold text-slate-900">Choose the best price tier</h2>
+      <div className="bg-white rounded-[32px] shadow-sm p-5 sm:p-6 lg:p-8 border border-slate-200">
+        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-5 shadow-sm">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-slate-500">Buy by quantity</p>
+              <h2 className="mt-2 text-2xl font-bold leading-tight text-slate-900">Choose the best price tier</h2>
             </div>
-            <div className="flex items-center gap-2 rounded-3xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+            <div className="flex flex-col gap-2 rounded-[28px] border border-slate-200 bg-white px-4 py-3 shadow-sm sm:flex-row sm:items-center">
               <label htmlFor="product-quantity" className="text-sm font-medium text-slate-700">Quantity</label>
               <input
                 id="product-quantity"
@@ -102,61 +102,64 @@ export default function ProductOptions({ product, onAddToCart }) {
                 min={1}
                 max={maxQuantity}
                 onChange={(event) => handleQuantityInput(event.target.value)}
-                className="w-[88px] rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                className="w-20 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
               />
             </div>
           </div>
-          <p className="mt-3 text-sm leading-6 text-slate-600">
-            Select a pricing tier or enter a custom quantity. The price will update automatically based on the correct tier.
+          <p className="mt-4 text-sm leading-6 text-slate-600 sm:max-w-2xl">
+            Pick a quantity or tap a tier to auto-select it. Your unit price and total update instantly for a smooth ordering experience.
           </p>
         </div>
 
-<div className="mt-4">
-            {tierList.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {tierList.map((tier, index) => {
-                  const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
-                  const badgeLabel = isActive
-                    ? 'Active tier'
-                    : index === 0
-                    ? 'Popular'
-                    : index === featuredTierIndex
-                    ? 'Best value'
-                    : null;
-                  return (
-                    <button
-                      type="button"
-                      key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
-                      onClick={() => handleTierSelect(tier)}
-                      className={`group w-full rounded-3xl border p-4 text-left transition ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300'} focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <div className="text-sm font-semibold text-slate-900">
-                            {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
-                          </div>
-                          <div className="mt-1 text-xs text-slate-500">Unit price</div>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {tierList.length > 0 ? (
+            tierList.map((tier, index) => {
+              const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
+              const badgeLabel = isActive
+                ? 'Active tier'
+                : index === 0
+                ? 'Popular'
+                : index === featuredTierIndex
+                ? 'Best value'
+                : null;
+              return (
+                <button
+                  type="button"
+                  key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
+                  onClick={() => handleTierSelect(tier)}
+                  aria-pressed={isActive}
+                  className={`group w-full rounded-[28px] border p-5 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="text-sm font-semibold text-slate-900">
+                          {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
                         </div>
-                        <div className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
-                          ৳{tier.price.toFixed(2)}
-                        </div>
+                        <div className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">Unit price</div>
                       </div>
-                      <div className="mt-4 flex items-center justify-between gap-2">
-                        <div className="text-sm text-slate-600">
-                          {isActive ? 'Selected tier' : 'Tier price'}
-                        </div>
-                        {badgeLabel && (
-                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-white'}`}>
-                            {badgeLabel}
-                          </span>
-                        )}
+                      <div className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm">
+                        ৳{tier.price.toFixed(2)}
                       </div>
-                    </button>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
+                    </div>
+
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-slate-700">{isActive ? 'Selected tier' : 'Tier price'}</p>
+                        <p className="text-xs text-slate-500">{tier.minQty} {tier.maxQty ? `to ${tier.maxQty}` : 'or more'} units</p>
+                      </div>
+                      {badgeLabel && (
+                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
+                          {badgeLabel}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              );
+            })
+          ) : (
+            <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
               This product has no quantity-based pricing. The regular price applies for every quantity.
             </div>
           )}
