@@ -31,6 +31,14 @@ export default function ProductOptions({ product, onAddToCart }) {
     setQuantity(safeQuantity);
   };
 
+  const handleDecreaseQuantity = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleIncreaseQuantity = () => {
+    setQuantity((prev) => Math.min(maxQuantity, prev + 1));
+  };
+
   const activeTier = pricingSummary.appliedTier;
   const featuredTierIndex = tierList.length > 0 ? tierList.length - 1 : 0;
   const selectedTierLabel = activeTier
@@ -96,11 +104,22 @@ export default function ProductOptions({ product, onAddToCart }) {
       {/* <ComboOfferDisplay product={product} /> */}
 
       {/* Product Options Card */}
-      <div className="bg-white rounded-[32px] shadow-sm p-5 sm:p-6 lg:p-8 border border-slate-200">
-        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-4 sm:p-5">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">
-              <label htmlFor="product-quantity" className="text-sm font-medium text-slate-600">Qty</label>
+      <div className="bg-white rounded-[32px] shadow-sm p-4 sm:p-5 lg:p-6 border border-slate-200">
+        <div className="mb-4 rounded-[24px] border border-slate-200 bg-slate-50 p-3 sm:p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-slate-900">Quantity</p>
+              <p className="text-xs text-slate-500">Enter the quantity to see tier pricing.</p>
+            </div>
+            <div className="inline-flex items-center rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+              <button
+                type="button"
+                onClick={handleDecreaseQuantity}
+                disabled={quantity <= 1}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-slate-300"
+              >
+                -
+              </button>
               <input
                 id="product-quantity"
                 type="number"
@@ -108,8 +127,16 @@ export default function ProductOptions({ product, onAddToCart }) {
                 min={1}
                 max={maxQuantity}
                 onChange={(event) => handleQuantityInput(event.target.value)}
-                className="w-20 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-right text-base font-semibold text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                className="w-20 border-x border-slate-200 bg-white px-2 text-center text-base font-semibold text-slate-900 outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
               />
+              <button
+                type="button"
+                onClick={handleIncreaseQuantity}
+                disabled={quantity >= maxQuantity}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-slate-300"
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -133,37 +160,37 @@ export default function ProductOptions({ product, onAddToCart }) {
                     key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
                     onClick={() => handleTierSelect(tier)}
                     aria-pressed={isActive}
-                    className={`flex h-full flex-col justify-between rounded-[24px] border p-4 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-sm' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
+                    className={`flex flex-col justify-between rounded-2xl border p-3 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-sm' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
                   >
-                    <div className="space-y-3">
-                      <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-3">
                         <div>
                           <div className="text-sm font-semibold text-slate-900">
                             {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
                           </div>
-                          <div className="mt-1 text-[11px] uppercase tracking-[0.3em] text-slate-400">Unit price</div>
+                          <div className="text-[10px] uppercase tracking-[0.35em] text-slate-400">Unit price</div>
                         </div>
                         {badgeLabel && (
-                          <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
+                          <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
                             {badgeLabel}
                           </span>
                         )}
                       </div>
-                      <div className="text-xl font-bold text-slate-900">৳{tier.price.toFixed(2)}</div>
+                      <div className="text-lg font-bold text-slate-900">৳{tier.price.toFixed(2)}</div>
                       {savingsPerUnit > 0 && (
-                        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
                           Save ৳{savingsPerUnit.toFixed(2)} each
                         </div>
                       )}
                     </div>
-                    <div className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+                    <div className="mt-3 border-t border-slate-200 pt-2 text-xs text-slate-600">
                       {isActive ? 'Selected tier' : 'Tap to select this tier'}
                     </div>
                   </button>
                 );
               })
             ) : (
-              <div className="rounded-[24px] border border-slate-200 bg-slate-50 p-4 text-center text-sm text-slate-600">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center text-sm text-slate-600">
                 This product has no tiered pricing. The regular price applies for every quantity.
               </div>
             )}
