@@ -33,6 +33,16 @@ export default function ProductOptions({ product, onAddToCart }) {
 
   const activeTier = pricingSummary.appliedTier;
   const featuredTierIndex = tierList.length > 0 ? tierList.length - 1 : 0;
+  const selectedTierLabel = activeTier
+    ? `${activeTier.minQty}${activeTier.maxQty ? `–${activeTier.maxQty}` : '+'} units`
+    : 'Standard price';
+  const selectedTierBadge = activeTier
+    ? activeTier.minQty === tierList[0]?.minQty
+      ? 'Popular'
+      : activeTier.minQty === tierList[featuredTierIndex]?.minQty
+      ? 'Best value'
+      : 'Selected'
+    : null;
 
   const handleAddToCart = () => {
     if (product.stock === 0) {
@@ -87,13 +97,14 @@ export default function ProductOptions({ product, onAddToCart }) {
 
       {/* Product Options Card */}
       <div className="bg-white rounded-[32px] shadow-sm p-5 sm:p-6 lg:p-8 border border-slate-200">
-        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-5 shadow-sm">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="mb-5 rounded-[28px] border border-slate-200 bg-slate-50 p-4 sm:p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-w-0">
-              <h2 className="text-2xl font-bold leading-tight text-slate-900">Choose the best price tier</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Choose the best price tier</h2>
+              <p className="mt-2 text-sm text-slate-600">Adjust quantity and pick a tier for the best available price.</p>
             </div>
-            <div className="flex flex-col gap-2 rounded-[28px] border border-slate-200 bg-white px-4 py-3 shadow-sm sm:flex-row sm:items-center">
-              <label htmlFor="product-quantity" className="text-sm font-medium text-slate-700">Quantity</label>
+            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">
+              <label htmlFor="product-quantity" className="text-sm font-medium text-slate-600">Qty</label>
               <input
                 id="product-quantity"
                 type="number"
@@ -105,60 +116,84 @@ export default function ProductOptions({ product, onAddToCart }) {
               />
             </div>
           </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Selected tier</p>
+              <div className="mt-3 flex items-center gap-2">
+                <p className="text-base font-semibold text-slate-900">{selectedTierLabel}</p>
+                {selectedTierBadge && (
+                  <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+                    {selectedTierBadge}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Unit price</p>
+              <p className="mt-3 text-base font-semibold text-slate-900">৳{pricingSummary.effectiveUnitPrice.toFixed(2)}</p>
+            </div>
+            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Total price</p>
+              <p className="mt-3 text-base font-semibold text-slate-900">৳{pricingSummary.totalPrice.toFixed(2)}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {tierList.length > 0 ? (
-            tierList.map((tier, index) => {
-              const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
-              const badgeLabel = isActive
-                ? 'Active tier'
-                : index === 0
-                ? 'Popular'
-                : index === featuredTierIndex
-                ? 'Best value'
-                : null;
-              return (
-                <button
-                  type="button"
-                  key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
-                  onClick={() => handleTierSelect(tier)}
-                  aria-pressed={isActive}
-                  className={`group w-full rounded-[28px] border p-5 text-left transition-all duration-200 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
-                >
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="text-sm font-semibold text-slate-900">
-                          {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+        <div className="overflow-x-auto pb-2">
+          <div className="flex min-w-[max-content] gap-4 sm:grid sm:grid-cols-2 xl:grid-cols-3 sm:min-w-0">
+            {tierList.length > 0 ? (
+              tierList.map((tier, index) => {
+                const isActive = activeTier?.minQty === tier.minQty && activeTier?.maxQty === tier.maxQty;
+                const badgeLabel = isActive
+                  ? 'Active tier'
+                  : index === 0
+                  ? 'Popular'
+                  : index === featuredTierIndex
+                  ? 'Best value'
+                  : null;
+                const savingsPerUnit = basePrice > tier.price ? basePrice - tier.price : 0;
+                return (
+                  <button
+                    type="button"
+                    key={`${tier.minQty}-${tier.maxQty ?? 'null'}-${index}`}
+                    onClick={() => handleTierSelect(tier)}
+                    aria-pressed={isActive}
+                    className={`min-w-[260px] flex-shrink-0 sm:min-w-0 ${isActive ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-sm'} flex h-full flex-col justify-between rounded-[28px] border p-5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/25`}
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <div className="text-sm font-semibold text-slate-900">
+                            {tier.minQty}{tier.maxQty ? `–${tier.maxQty}` : '+'} units
+                          </div>
+                          <div className="mt-2 text-xs uppercase tracking-[0.3em] text-slate-400">Unit price</div>
                         </div>
-                        <div className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">Unit price</div>
+                        {badgeLabel && (
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
+                            {badgeLabel}
+                          </span>
+                        )}
                       </div>
-                      <div className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm">
-                        ৳{tier.price.toFixed(2)}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-slate-700">{isActive ? 'Selected tier' : 'Tier price'}</p>
-                        <p className="text-xs text-slate-500">{tier.minQty} {tier.maxQty ? `to ${tier.maxQty}` : 'or more'} units</p>
-                      </div>
-                      {badgeLabel && (
-                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${isActive ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white'}`}>
-                          {badgeLabel}
-                        </span>
+                      <div className="text-2xl font-bold text-slate-900">৳{tier.price.toFixed(2)}</div>
+                      {savingsPerUnit > 0 && (
+                        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">
+                          Save ৳{savingsPerUnit.toFixed(2)} each
+                        </div>
                       )}
                     </div>
-                  </div>
-                </button>
-              );
-            })
-          ) : (
-            <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
-              This product has no tiered pricing. The regular price applies for every quantity.
-            </div>
-          )}
+                    <div className="mt-6 border-t border-slate-200 pt-4 text-sm text-slate-600">
+                      {isActive ? 'Selected tier' : 'Tap to select this tier'}
+                    </div>
+                  </button>
+                );
+              })
+            ) : (
+              <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-6 text-center text-sm text-slate-600">
+                This product has no tiered pricing. The regular price applies for every quantity.
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Add to Cart Button */}
