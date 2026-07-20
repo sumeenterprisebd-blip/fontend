@@ -137,41 +137,6 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Social Media */}
-                <div className="mt-10 pt-8 border-t-2 border-gray-200">
-                  <h3 className="text-xs font-bold text-gray-400 uppercase mb-5 tracking-wider">Follow Us</h3>
-                  <div className="flex gap-3">
-                    <Link
-                      href="https://www.facebook.com/sumetraders/"
-                      className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
-                      aria-label="Facebook"
-                    >
-                      <FaFacebook className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
-                    </Link>
-                    <Link
-                      href="https://www.facebook.com/sumetraders/"
-                      className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
-                      aria-label="Twitter"
-                    >
-                      <FaTwitter className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
-                    </Link>
-                    <Link
-                      href="https://www.instagram.com/sumetraders/"
-                      className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
-                      aria-label="Instagram"
-                    >
-                      <FaInstagram className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
-                    </Link>
-                    <Link
-                      href="https://www.linkedin.com/company/sumetraders/"
-                      className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center hover:from-gray-900 hover:to-gray-800 hover:text-white transition-all duration-300 group shadow-md hover:shadow-xl transform hover:scale-110"
-                      aria-label="LinkedIn"
-                    >
-                      <FaLinkedin className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" />
-                    </Link>
-                  </div>
-                </div>
               </div>
             </div>
 
