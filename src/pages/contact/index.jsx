@@ -117,7 +117,7 @@ export default function ContactPage() {
                       <h3 className="text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Address</h3>
                       <p className="text-gray-800 font-semibold leading-relaxed">
                         Dhaka, Bangladesh<br />
-                        <span className="text-gray-600 font-normal">Street Address, Building Name</span>
+                        <span className="text-gray-600 font-normal">Section-12 Block-D, Lane-6 Plot-I/15, Pallabi Mirpur Dhaka-1216</span>
                       </p>
                     </div>
                   </div>
