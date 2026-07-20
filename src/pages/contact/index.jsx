@@ -16,7 +16,7 @@ export default function ContactPage() {
         '@type': 'ContactPoint',
         telephone: '+880-XXX-XXXXXX',
         contactType: 'Customer Service',
-        email: 'support@sumetraders.com',
+        email: 'mssumetreader@gmail.com',
         areaServed: 'BD',
         availableLanguage: ['Bengali', 'English']
       }
@@ -84,10 +84,10 @@ export default function ContactPage() {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-xs font-bold text-gray-400 uppercase mb-1.5 tracking-wider">Email</h3>
                       <Link
-                        href="mailto:support@sumetraders.com"
+                        href="mailto:mssumetreader@gmail.com"
                         className="text-gray-800 hover:text-gray-900 font-semibold transition-colors block break-words"
                       >
-                        support@sumetraders.com
+                        mssumetreader@gmail.com
                       </Link>
                     </div>
                   </div>

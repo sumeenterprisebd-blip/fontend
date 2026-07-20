@@ -31,10 +31,10 @@ export default function Topbar() {
               +1 (234) 567-890
             </Link>
             <Link
-              href="mailto:support@sumetraders.com"
+              href="mailto:mssumetreader@gmail.com"
               className="hidden lg:inline hover:text-gray-300 transition-colors"
             >
-              support@sumetraders.com
+              mssumetreader@gmail.com
             </Link>
             <Link
               href="/track-order"
