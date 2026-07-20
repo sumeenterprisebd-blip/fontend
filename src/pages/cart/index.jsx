@@ -135,58 +135,6 @@ export default function CartPage() {
                   />
                 ))}
               </div>
-
-              {/* Order Summary - Bottom on mobile, Right Column on desktop (1/3 width) */}
-              <div className="w-full lg:col-span-1">
-                <div className="mb-6">
-                  <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-lg font-extrabold text-gray-900">🔥 কম্বো অফার</h3>
-                      {comboLoading && <span className="text-xs text-gray-500">Checking…</span>}
-                    </div>
-
-                    <div className="rounded-2xl border border-yellow-200 bg-yellow-50 p-4 text-sm text-gray-800">
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-2">
-                          <span>🎁</span>
-                          <div>
-                            ৩ পিস কিনলেই <span className="font-semibold text-green-700">ফ্রি ডেলিভারি</span>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <span>💰</span>
-                          <div>
-                            অথবা মোট অর্ডার <span className="font-semibold">{settings?.currencySymbol || '৳'}{Number(freeShippingThreshold).toLocaleString('en-US')}</span> হলে ফ্রি ডেলিভারি।
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-2">
-                          <span>🚚</span>
-                          <div>চুক্তি না হলে নিয়মিত ডেলিভারি চার্জ প্রযোজ্য হবে।</div>
-                        </div>
-                      </div>
-
-                      <div className="mt-5 rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-900">
-                        <div className="font-semibold mb-2">📌 বিশেষ অনুরোধ</div>
-                        <p className="leading-relaxed">
-                          প্রিয় ভাই/আপু, অনুগ্রহ করে নিশ্চিত হয়ে অর্ডার করুন। ফেক অর্ডার আমাদের ছোট ব্যবসার জন্য বড় ক্ষতির কারণ হয়।
-                        </p>
-                        <p className="mt-3 leading-relaxed">
-                          যদি কোনো কারণে পণ্য গ্রহণ না করতে চান বা রিটার্ন করতে হয়, তাহলে অনুগ্রহ করে ডেলিভারি ম্যানকে <span className="font-semibold">ডেলিভারি চার্জ প্রদান করে</span> পণ্যটি রিটার্ন করবেন।
-                        </p>
-                        <p className="mt-3 font-semibold text-gray-900">
-                          আপনার আন্তরিক সহযোগিতাই আমাদের এগিয়ে যাওয়ার অনুপ্রেরণা। ❤️
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <OrderSummary
-                  subtotal={cartTotals.subtotal}
-                  discount={cartTotals.discount}
-                  discountPercent={cartTotals.discountPercent}
-                  total={cartTotals.total}
-                />
-              </div>
             </div>
           )}
         </div>
