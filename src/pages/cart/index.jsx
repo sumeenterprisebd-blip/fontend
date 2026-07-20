@@ -135,6 +135,16 @@ export default function CartPage() {
                   />
                 ))}
               </div>
+
+              {/* Order Summary - Bottom on mobile, Right Column on desktop (1/3 width) */}
+              <div className="w-full lg:col-span-1">
+                <OrderSummary
+                  subtotal={cartTotals.subtotal}
+                  discount={cartTotals.discount}
+                  discountPercent={cartTotals.discountPercent}
+                  total={cartTotals.total}
+                />
+              </div>
             </div>
           )}
         </div>
